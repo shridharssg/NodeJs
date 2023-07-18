@@ -45,7 +45,7 @@ HTTPS, and authentication and authorization.
 To securely store passwords, we will use the bcrypt library, and to authenticate users,
 we will use the JSON web token library. We will also interact with a MongoDB database
 using the Mongoose library.
-
+```
 --------------------------------------------------------
 Q2.[Event Loop Phases](https://javascript.plainenglish.io/node-js-event-loop-explained-d27647ec8d53)
 
