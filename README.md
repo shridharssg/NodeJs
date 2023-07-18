@@ -150,7 +150,8 @@ Microtasks are executed after the main thread and each phase of the event loop. 
 ```
 -----------------------------------------------------------------------------------------------------------
 
-``` diff [Q3. Node.js file system: ]([url](https://www.w3schools.com/nodejs/nodejs_filesystem.asp))
+``` diff
+[Q3. Node.js file system: ](https://www.w3schools.com/nodejs/nodejs_filesystem.asp)
 
 To handle file operations like creating, reading, deleting, etc., Node.js provides an inbuilt module called FS (File System). 
 All file system operations can have synchronous and asynchronous forms depending upon user requirements.
@@ -177,7 +178,7 @@ http.createServer(function (req, res) {
     return res.end();
   });
 }).listen(8080);
-------------------
+
 - Create Files
 The File System module has methods for creating new files:
 
@@ -207,7 +208,7 @@ fs.writeFile('mynewfile3.txt', 'Hello content!', function (err) {
 });
 
 - Delete Files
-The fs.unlink() method deletes the specified file:
++ The fs.unlink() method deletes the specified file:
 
 fs.unlink('mynewfile2.txt', function (err) {
   if (err) throw err;
@@ -215,8 +216,9 @@ fs.unlink('mynewfile2.txt', function (err) {
 });
 
 - Rename File
-The fs.rename() method renames the specified file:
-Here, Rename "mynewfile1.txt" to "myrenamedfile.txt":
++ The fs.rename() method renames the specified file:
++ Here, Rename "mynewfile1.txt" to "myrenamedfile.txt":
+
 fs.rename('mynewfile1.txt', 'myrenamedfile.txt', function (err) {
   if (err) throw err;
   console.log('File Renamed!');
