@@ -150,7 +150,7 @@ Microtasks are executed after the main thread and each phase of the event loop. 
 ```
 -----------------------------------------------------------------------------------------------------------
 
-``` diff [Q3. Node.js file system: ](url)
+``` diff [Q3. Node.js file system: ]([url](https://www.w3schools.com/nodejs/nodejs_filesystem.asp))
 
 To handle file operations like creating, reading, deleting, etc., Node.js provides an inbuilt module called FS (File System). 
 All file system operations can have synchronous and asynchronous forms depending upon user requirements.
