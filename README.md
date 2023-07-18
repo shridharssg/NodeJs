@@ -1,5 +1,8 @@
 # nodejs
 
+
+[How to create a secure REST API in Node.js](https://www.turing.com/kb/build-secure-rest-api-in-nodejs)
+
 Node JS Platform
 Node JS Platform uses “Single Threaded Event Loop” architecture to handle multiple concurrent clients. 
 Then how it really handles concurrent client requests without using multiple threads. What is Event Loop model? We will discuss these concepts one by one. 
