@@ -1,9 +1,11 @@
-<a id="nodeJSTop"> # Nodejs </a>
-1. [Secure Rest API] (#markdown-header-span-elements)
-2. <a data-is-external-link="true" href="#markdown-header-span-elements" rel="nofollow">Span Elements</a>
-3. [Architecture And Event Loop Phases] (#arch)
-4. [File System] (#fs)
+# <a id="nodeJSIndex"> Nodejs </a>
+---
+1. # [Secure Rest API](#securityIndex)
+2. # [Architecture And Event Loop Phases](#architectureIndex)
+3. # <a id="fsIndex"> File System </a>
 
+---
+# <a id="securityIndex"> Secure Rest API </a>
 Q1.[How to create a secure REST API in Node.js](https://www.turing.com/kb/build-secure-rest-api-in-nodejs)
 
 ```diff
@@ -58,8 +60,10 @@ validating and sanitizing input, implementing authentication and authorization, 
 the most recent security patches. Regular security testing and having a plan in place for responding to security
 incidents are also essential for keeping the API secure.
 ```
+[Back to Top](#nodeJSIndex)
 --------------------------------------------------------
-<h1 id="markdown-header-span-elements">Span Elements</h1>
+
+# <a id="architectureIndex"> Architecture And Event Loop Phases </a>
 Q2.[Event Loop Phases](https://javascript.plainenglish.io/node-js-event-loop-explained-d27647ec8d53)
 
 ```diff
@@ -152,7 +156,8 @@ Microtasks are executed after the main thread and each phase of the event loop. 
 
 ![image](https://github.com/shridharssg/nodejs/assets/139750756/5dfe59cb-406e-4c66-8a3e-44091a5c9cf0)
 ```
------------------------------------------------------------------------------------------------------------
+[Back to Top](#nodeJSIndex)
+---
 
 ``` diff
 [Q3. Node.js file system: ](https://www.w3schools.com/nodejs/nodejs_filesystem.asp)
@@ -228,4 +233,4 @@ fs.rename('mynewfile1.txt', 'myrenamedfile.txt', function (err) {
   console.log('File Renamed!');
 });
 ```
-[Back to Top](#nodeJSTop)
+[Back to Top](#nodeJSIndex)
