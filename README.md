@@ -4,31 +4,31 @@
 1.[How to create a secure REST API in Node.js](https://www.turing.com/kb/build-secure-rest-api-in-nodejs)
 
 ```diff
-- **A. Make use of HTTPS**
+- A. Make use of HTTPS
 
 HTTPS is the HTTP protocol's secure version. It enables encrypted communication between the client and the server, safeguarding data against interception and tampering.
 
 HTTPS is required for any API that handles sensitive data or requires authentication. It ensures that data is transmitted securely and cannot be intercepted by any malicious activity.
 
-**B. Make use of Authentication**
+- B. Make use of Authentication
 
 Authentication is a method of verifying a user's identity. It is a critical security measure for any API because it prevents unauthorized access to sensitive data.
 
 You can use a variety of authentication methods in Node.js, including OAuth, JWT, and API keys. Each of these methods has advantages and disadvantages, so it is critical to select the best one for your application.
 
-**C. Restrict access**
+- C. Restrict access
 
 Another important security measure is to restrict API access. It ensures that the API and its data are only accessible to authorized users.
 
 You can use access control lists (ACLs) in Node.js to specify who can access the API and what they can do. This enables you to limit access to only those users who have the required permissions.
 
-**D. Validation of input**
+- D. Validation of input
 
 Input validation ensures that the data sent to an API is correct and secure. It guards against malicious users sending malicious or incorrect data to the API.
 
 To perform input validation in Node.js, you can use a library named express-validator. This library enables you to validate API data and reject requests that do not meet the specified criteria.
 
-**E. Implement security best practices**
+- E. Implement security best practices
 
 Finally, while developing a REST API in Node.js, it is critical to adhere to security best practices. This includes implementing secure coding practices such as input validation, HTTPS, and authentication and authorization.
 
