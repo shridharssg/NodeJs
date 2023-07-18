@@ -65,7 +65,6 @@ incidents are also essential for keeping the API secure.
 ---
 ``` diff
 <a id="architectureIndex"> Architecture And Event Loop Phases </a>
-
 Q. [NodeJs Architecture](https://www.digitalocean.com/community/tutorials/node-js-architecture-single-threaded-event-loop)
 
 + Node JS Platform
@@ -134,15 +133,12 @@ Received on the Single Thread and Node internally manages the Execution of block
        and more threads, because of Event loop.
     3.	Node JS application uses less Threads so that it can utilize only less resources or memory
 
-``
-
+```
 ---
 
-Q. [Event Loop Phases](https://javascript.plainenglish.io/node-js-event-loop-explained-d27647ec8d53)
-
 ```diff
-- 
 
+Q. [Event Loop Phases](https://javascript.plainenglish.io/node-js-event-loop-explained-d27647ec8d53)
 
 - The 6 phases of the Node.js event
 Let’s look at a code snippet first:
