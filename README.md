@@ -3,7 +3,7 @@
 
 1.[How to create a secure REST API in Node.js](https://www.turing.com/kb/build-secure-rest-api-in-nodejs)
 
-**A. Make use of HTTPS**
+```diff - **A. Make use of HTTPS**
 
 HTTPS is the HTTP protocol's secure version. It enables encrypted communication between the client and the server, safeguarding data against interception and tampering.
 
