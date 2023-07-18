@@ -6,11 +6,12 @@ Q1.[How to create a secure REST API in Node.js](https://www.turing.com/kb/build-
 ```diff
 - A. Make use of HTTPS
 
-HTTPS is the HTTP protocol's secure version. It enables encrypted communication between the client and the server,
-safeguarding data against interception and tampering.
+HTTPS is the HTTP protocol's secure version. It enables encrypted communication between the client
+ and the server, safeguarding data against interception and tampering.
 
-HTTPS is required for any API that handles sensitive data or requires authentication. It ensures that data
-is transmitted securely and cannot be intercepted by any malicious activity.
+HTTPS is required for any API that handles sensitive data or requires authentication. It ensures that
+data is transmitted securely and cannot be intercepted by any malicious activity.
+Here, S stands for Security Socket Layer (SSL) to establish encryption in communication
 
 - B. Make use of Authentication
 
@@ -18,7 +19,8 @@ Authentication is a method of verifying a user's identity. It is a critical secu
 because it prevents unauthorized access to sensitive data.
 
 You can use a variety of authentication methods in Node.js, including OAuth, JWT, and API keys.
-Each of these methods has advantages and disadvantages, so it is critical to select the best one for your application.
+Each of these methods has advantages and disadvantages, so it is critical to select the best
+one for your application.
 
 - C. Restrict access
 
@@ -33,18 +35,25 @@ You can use access control lists (ACLs) in Node.js to specify who can access the
 Input validation ensures that the data sent to an API is correct and secure.
 It guards against malicious users sending malicious or incorrect data to the API.
 
-To perform input validation in Node.js, you can use a library named express-validator.
+To perform input validation in Node.js, you can use a library likes Joe Module, express-validator.
 This library enables you to validate API data and reject requests that do not meet the specified criteria.
 
 - E. Implement security best practices
 
 Finally, while developing a REST API in Node.js, it is critical to adhere to security best practices.
-This includes implementing secure coding practices such as input validation,
-HTTPS, and authentication and authorization.
+This includes implementing secure coding practices such as input validation, HTTPS, and
+authentication and authorization.
 
 To securely store passwords, we will use the bcrypt library, and to authenticate users,
-we will use the JSON web token library. We will also interact with a MongoDB database
-using the Mongoose library.
+we will use the JSON web token library.
+We will also interact with a MongoDB database using the Mongoose library.
+
+- Conclusion
+To summarize, creating a secure API with Node.js necessitates attention to detail and the implementation of various
+security measures to protect against common threats. These safeguards include encrypting and hashing sensitive data,
+validating and sanitizing input, implementing authentication and authorization, and keeping software up to date with
+the most recent security patches. Regular security testing and having a plan in place for responding to security
+incidents are also essential for keeping the API secure.
 ```
 --------------------------------------------------------
 Q2.[Event Loop Phases](https://javascript.plainenglish.io/node-js-event-loop-explained-d27647ec8d53)
