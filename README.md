@@ -1,12 +1,12 @@
-# <a id="nodeJSIndex"> Nodejs </a>
----
-1. # [Secure Rest API](#securityIndex)
-2. # [Architecture And Event Loop Phases](#architectureIndex)
-3. # <a id="fsIndex"> File System </a>
+# <a id="nodeJSIndex"> NodeJs </a>
+
+1. [Secure Rest API](#securityIndex)
+2. [Architecture And Event Loop Phases](#architectureIndex)
+3. [File System](#fsIndex)
 
 ---
-# <a id="securityIndex"> Secure Rest API </a>
-Q1.[How to create a secure REST API in Node.js](https://www.turing.com/kb/build-secure-rest-api-in-nodejs)
+## <a id="securityIndex"> Secure Rest API </a>
+Q. [How to create a secure REST API in Node.js](https://www.turing.com/kb/build-secure-rest-api-in-nodejs)
 
 ```diff
 - A. Make use of HTTPS
@@ -64,7 +64,7 @@ incidents are also essential for keeping the API secure.
 --------------------------------------------------------
 
 # <a id="architectureIndex"> Architecture And Event Loop Phases </a>
-Q2.[Event Loop Phases](https://javascript.plainenglish.io/node-js-event-loop-explained-d27647ec8d53)
+Q.[Event Loop Phases](https://javascript.plainenglish.io/node-js-event-loop-explained-d27647ec8d53)
 
 ```diff
 - Node JS Platform
@@ -160,7 +160,8 @@ Microtasks are executed after the main thread and each phase of the event loop. 
 ---
 
 ``` diff
-[Q3. Node.js file system: ](https://www.w3schools.com/nodejs/nodejs_filesystem.asp)
+# <a id="fsIndex"> File System </a>
+Q. [Node.js file system: ](https://www.w3schools.com/nodejs/nodejs_filesystem.asp)
 
 To handle file operations like creating, reading, deleting, etc., Node.js provides an inbuilt module called FS (File System). 
 All file system operations can have synchronous and asynchronous forms depending upon user requirements.
