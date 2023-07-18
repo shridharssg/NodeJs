@@ -147,3 +147,77 @@ then() and catch() that handle resolved and rejected promises
 Microtasks are executed after the main thread and each phase of the event loop. Microtasks created by process.nextTick() are executed before those created by then() and catch().
 
 ![image](https://github.com/shridharssg/nodejs/assets/139750756/5dfe59cb-406e-4c66-8a3e-44091a5c9cf0)
+```
+-----------------------------------------------------------------------------------------------------------
+
+```[Q3. Node.js file system: ](url)
+
+To handle file operations like creating, reading, deleting, etc., Node.js provides an inbuilt module called FS (File System). 
+All file system operations can have synchronous and asynchronous forms depending upon user requirements.
+
+To use this File System module, use the require() method:
+var fs = require('fs');
+
+- Common use for File System module:
+•	Read Files
+•	Write Files
+•	Append Files
+•	Close Files
+•	Delete File
+
+- Read Files
+The fs.readFile() method is used to read files on your computer.
+
+var http = require('http');
+var fs = require('fs');
+http.createServer(function (req, res) {
+  fs.readFile('demofile1.html', function(err, data) {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write(data);
+    return res.end();
+  });
+}).listen(8080);
+------------------
+- Create Files
+The File System module has methods for creating new files:
+
+fs.appendFile()
+fs.open()
+fs.writeFile()
+
++ The fs.appendFile() method appends specified content to a file. If the file does not exist, the file will be created:
+
+fs.appendFile('mynewfile1.txt', 'Hello content!', function (err) {
+  if (err) throw err;
+  console.log('Saved!');
+});
+
++ The fs.open() method takes a "flag" as the second argument, if the flag is "w" for "writing", the specified file is opened for writing. If the file does not exist, an empty file is created:
+
+fs.open('mynewfile2.txt', 'w', function (err, file) {
+  if (err) throw err;
+  console.log('Saved!');
+});
+
++ The fs.writeFile() method replaces the specified file and content if it exists. If the file does not exist, a new file, containing the specified content, will be created:
+
+fs.writeFile('mynewfile3.txt', 'Hello content!', function (err) {
+  if (err) throw err;
+  console.log('Saved!');
+});
+
+- Delete Files
+The fs.unlink() method deletes the specified file:
+
+fs.unlink('mynewfile2.txt', function (err) {
+  if (err) throw err;
+  console.log('File deleted!');
+});
+
+- Rename File
+The fs.rename() method renames the specified file:
+Here, Rename "mynewfile1.txt" to "myrenamedfile.txt":
+fs.rename('mynewfile1.txt', 'myrenamedfile.txt', function (err) {
+  if (err) throw err;
+  console.log('File Renamed!');
+});
