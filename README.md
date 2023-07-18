@@ -210,12 +210,10 @@ fs.writeFile('mynewfile3.txt', 'Hello content!', function (err) {
 - Delete Files
 + The fs.unlink() method deletes the specified file:
 
-```
 fs.unlink('mynewfile2.txt', function (err) {
   if (err) throw err;
   console.log('File deleted!');
 });
-```
 
 - Rename File
 + The fs.rename() method renames the specified file:
