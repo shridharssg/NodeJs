@@ -3,6 +3,7 @@
 1. [Secure Rest API](#securityIndex)
 2. [Architecture And Event Loop Phases](#architectureIndex)
 3. [File System](#fsIndex)
+4. [Data Stream](#dataIndex)
 
 ---
 ## <a id="securityIndex"> Secure Rest API </a>
@@ -134,6 +135,7 @@ Received on the Single Thread and Node internally manages the Execution of block
     3.	Node JS application uses less Threads so that it can utilize only less resources or memory
 
 ```
+
 ---
 
 ```diff
@@ -220,14 +222,19 @@ then() and catch() that handle resolved and rejected promises
 Microtasks are executed after the main thread and each phase of the event loop. Microtasks created by process.nextTick() are executed before those created by then() and catch().
 
 ![image](https://github.com/shridharssg/nodejs/assets/139750756/5dfe59cb-406e-4c66-8a3e-44091a5c9cf0)
+
 ```
+
 [Back to Top](#nodeJSIndex)
 
+
 ---
 
+
 ``` diff
+
 <a id="fsIndex"> File System </a>
----
+
 Q. [Node.js file system: ](https://www.w3schools.com/nodejs/nodejs_filesystem.asp)
 
 To handle file operations like creating, reading, deleting, etc., Node.js provides an inbuilt module called FS (File System). 
@@ -300,5 +307,30 @@ fs.rename('mynewfile1.txt', 'myrenamedfile.txt', function (err) {
   if (err) throw err;
   console.log('File Renamed!');
 });
+
+```
+
+``` diff
+
+<a id="dataIndex"> Data Stream </a>
+
+Streams are objects that let you read data from a source or write data to a destination in continuous fashion.
+Streaming means listening to music or watching video in real time, instead of downloading a file to your computer
+and watching it later
+
++ There are four types of streams
+    •	Readable − Stream which is used for read operation.
+    •	Writable − Stream which is used for write operation.
+    •	Duplex − Stream which can be used for both read and write operation.
+    •	Transform − A type of duplex stream where the output is computed based on input.
+
+Each type of Stream is an EventEmitter instance and throws several events at different instance of times.
+
++ Methods:
+   •	data ** − This event is fired when there is data is available to read.
+   •	end − This event is fired when there is no more data to read.
+   •	error − This event is fired when there is any error receiving or writing data.
+   •	finish − This event is fired when all the data has been flushed to underlying system.
+
 ```
 [Back to Top](#nodeJSIndex)
