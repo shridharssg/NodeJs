@@ -4,8 +4,14 @@
 2. [Architecture And Event Loop Phases](#architectureIndex)
 3. [File System](#fsIndex)
 4. [Data Stream](#dataIndex)
+5. [Microservices](#microIndex)
 
 ---
+## <a id="microIndex"> Microservices </a>
+Q. [How to create a microservices in Node.js](https://www.turing.com/kb/how-to-build-microservices-with-node-js)
+
+---
+
 ## <a id="securityIndex"> Secure Rest API </a>
 Q. [How to create a secure REST API in Node.js](https://www.turing.com/kb/build-secure-rest-api-in-nodejs)
 
@@ -331,6 +337,8 @@ Each type of Stream is an EventEmitter instance and throws several events at dif
    •	end − This event is fired when there is no more data to read.
    •	error − This event is fired when there is any error receiving or writing data.
    •	finish − This event is fired when all the data has been flushed to underlying system.
+
+[Stream Example]([url](https://www.freecodecamp.org/news/node-js-streams-everything-you-need-to-know-c9141306be93/)
 
 ```
 [Back to Top](#nodeJSIndex)
