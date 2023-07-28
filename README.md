@@ -22,6 +22,10 @@
 20. [Package.json vs Package-lock.json](#packageIndex)
 
 ---
+## <a id="middlewareIndex"> Middleware </a>
+Q. [Middleware & Types](https://selvaganesh93.medium.com/how-node-js-middleware-works-d8e02a936113)
+
+---
 ## <a id="microIndex"> Microservices </a>
 Q. [How to create a microservices in Node.js](https://www.turing.com/kb/how-to-build-microservices-with-node-js)
 
