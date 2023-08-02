@@ -22,6 +22,10 @@
 20. [Package.json vs Package-lock.json](#packageIndex)
 21. [Express vs NestJs](#expressNestJsIndex)
     
+---
+## <a id="eventIndex"> Event Emitter and Events </a>
+Q. [Basic](https://github.com/learning-zone/nodejs-basics/tree/master#-5-nodejs-events)
+   [Advance](https://www.scaler.com/topics/nodejs/event-emitter-nodejs/)
 
 ---
 ## <a id="expressNestJsIndex"> Express vs NestJs </a>
