@@ -24,8 +24,28 @@
     
 ---
 ## <a id="eventIndex"> Event Emitter and Events </a>
-Q. [Basic](https://github.com/learning-zone/nodejs-basics/tree/master#-5-nodejs-events)
-   [Advance](https://www.scaler.com/topics/nodejs/event-emitter-nodejs/)
+The EventEmitter is a class that facilitates communication/interaction between objects in Node.js. 
+The EventEmitter class can be used to create and handle custom events.
+
+Many of Node's built-in modules inherit from EventEmitter like streams. 
+An emitter object basically has two main features:
+
+	Emitting name events. (emit)
+	Registering and unregistering listener functions. (on)
+ 
+ Building Blocks:
+
+.emit() - this method in event emitter is to emit an event in module
+
+.on() - this method is to listen to data on a registered event in node.js
+
+.once() - it listen to data on a registered event only once.
+
+.addListener() - it checks if the listener is registered for an event.
+
+.removeListener() - it removes the listener for an event.
+
+[event emitter with streams](https://www.scaler.com/topics/nodejs/event-emitter-nodejs/)
 
 ---
 ## <a id="expressNestJsIndex"> Express vs NestJs </a>
