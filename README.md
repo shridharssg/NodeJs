@@ -21,7 +21,11 @@
 19. [App.js vs Server.js](#appIndex)
 20. [Package.json vs Package-lock.json](#packageIndex)
 21. [Express vs NestJs](#expressNestJsIndex)
-    
+
+---
+## <a id="jsonWebTokenIndex"> Json Web Token </a>
+Q. [JSON Web Token](https://www.bezkoder.com/jwt-json-web-token/)
+
 ---
 ## <a id="eventIndex"> Event Emitter and Events </a>
 The EventEmitter is a class that facilitates communication/interaction between objects in Node.js. 
