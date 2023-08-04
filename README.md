@@ -24,7 +24,8 @@
 
 ---
 ## <a id="jsonWebTokenIndex"> Json Web Token </a>
-Q. [JSON Web Token](https://www.bezkoder.com/jwt-json-web-token/)
+Q. [JSON Web Token](https://www.bezkoder.com/jwt-json-web-token/) OR [video](https://www.youtube.com/watch?v=S20PCL9e_ks)
+
 
 ---
 ## <a id="eventIndex"> Event Emitter and Events </a>
