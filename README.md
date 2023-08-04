@@ -444,3 +444,25 @@ Each type of Stream is an EventEmitter instance and throws several events at dif
 
 ```
 [Back to Top](#nodeJSIndex)
+
+---
+
+``` diff
+- Q. What are the core modules of Node.js?
+
+Node.js has a set of core modules that are part of the platform and come with the Node.js installation. These modules can be loaded into the program by using the require function.
+
+Syntax: const module = require('module_name');
+
+Example:
+
+const http = require('http');
+
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/html'});
+  res.write('Welcome to Node.js!');
+  res.end();
+}).listen(3000);
+
+```
+
