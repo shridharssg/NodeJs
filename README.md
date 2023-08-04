@@ -448,21 +448,97 @@ Each type of Stream is an EventEmitter instance and throws several events at dif
 ---
 
 ``` diff
+
 - Q. What are the core modules of Node.js?
 
-Node.js has a set of core modules that are part of the platform and come with the Node.js installation. These modules can be loaded into the program by using the require function.
+	Node.js has a set of core modules that are part of the platform and come with the Node.js installation.
+	These modules can be loaded into the program by using the require function.
 
-Syntax: const module = require('module_name');
+Syntax:
+	const module = require('module_name');
 
 Example:
 
-const http = require('http');
-
-http.createServer(function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/html'});
-  res.write('Welcome to Node.js!');
-  res.end();
-}).listen(3000);
+	const http = require('http');
+	
+	http.createServer(function (req, res) {
+	  res.writeHead(200, {'Content-Type': 'text/html'});
+	  res.write('Welcome to Node.js!');
+	  res.end();
+	}).listen(3000);
 
 ```
+
+``` diff
+
+- Q. What are the global objects of Node.js?
+	Node.js Global Objects are the objects that are available in all modules.
+	Global Objects are built-in objects that are part of the JavaScript and can be used directly
+	in the application without importing any particular module.
+
+These objects are modules, functions, strings and object itself as explained below.
+
+1. global:
+
+	It is a global namespace. Defining a variable within this namespace makes it globally accessible.
+	var myvar;
+
+2. process:
+
+	It is an inbuilt global object that is an instance of EventEmitter used to get information on current process.
+	It can also be accessed using require() explicitly.
+
+3. console:
+
+	It is an inbuilt global object used to print to stdout and stderr.
+
+	console.log("Hello World"); // Hello World
+
+4. setTimeout(), clearTimeout(), setInterval(), clearInterval():
+
+	The built-in timer functions are globals
+	
+	function printHello() {
+	   console.log( "Hello, World!");
+	}
+	
+	// Now call above function after 2 seconds
+	var timeoutObj = setTimeout(printHello, 2000);
+
+5. __dirname:
+
+	It is a string. It specifies the name of the directory that currently contains the code.
+
+	console.log(__dirname);
+
+6. __filename:
+
+	It specifies the filename of the code being executed.
+	This is the resolved absolute path of this code file.
+	The value inside a module is the path to that module file.
+
+	console.log(__filename);
+
+```
+
+``` dif
+
+- Q. How to create a simple server in Node.js that returns Hello World?
+
+	/**
+	 * Express.js
+	 */
+	const express = require('express');
+	const app = express();
+	
+	app.get('/', function (req, res) {
+	  res.send('Hello World!');
+	});
+	
+	app.listen(3000, function () {
+	  console.log('App listening on port 3000!');
+	});
+
+```
+
 
