@@ -52,50 +52,50 @@ Example:
 
 These objects are modules, functions, strings and object itself as explained below.
 
-1. global:
-
-	It is a global namespace. Defining a variable within this namespace makes it globally accessible.
-	var myvar;
-
-2. process:
-
-	It is an inbuilt global object that is an instance of EventEmitter used to get information on current process.
-	It can also be accessed using require() explicitly.
-
-3. console:
-
-	It is an inbuilt global object used to print to stdout and stderr.
-
-	console.log("Hello World"); // Hello World
-
-4. setTimeout(), clearTimeout(), setInterval(), clearInterval():
-
-	The built-in timer functions are globals
+	**1. global:**
 	
-	function printHello() {
-	   console.log( "Hello, World!");
-	}
+		It is a global namespace. Defining a variable within this namespace makes it globally accessible.
+		var myvar;
 	
-	// Now call above function after 2 seconds
-	var timeoutObj = setTimeout(printHello, 2000);
-
-5. __dirname:
-
-	It is a string. It specifies the name of the directory that currently contains the code.
-
-	console.log(__dirname);
-
-6. __filename:
-
-	It specifies the filename of the code being executed.
-	This is the resolved absolute path of this code file.
-	The value inside a module is the path to that module file.
-
-	console.log(__filename);
+	**2. process:**
+	
+		It is an inbuilt global object that is an instance of EventEmitter used to get information on current process.
+		It can also be accessed using require() explicitly.
+	
+	**3. console:**
+	
+		It is an inbuilt global object used to print to stdout and stderr.
+	
+		console.log("Hello World"); // Hello World
+	
+	**4. setTimeout(), clearTimeout(), setInterval(), clearInterval():**
+	
+		The built-in timer functions are globals
+		
+		function printHello() {
+		   console.log( "Hello, World!");
+		}
+		
+		// Now call above function after 2 seconds
+		var timeoutObj = setTimeout(printHello, 2000);
+	
+	**5. __dirname:**
+	
+		It is a string. It specifies the name of the directory that currently contains the code.
+	
+		console.log(__dirname);
+	
+	**6. __filename:**
+	
+		It specifies the filename of the code being executed.
+		This is the resolved absolute path of this code file.
+		The value inside a module is the path to that module file.
+	
+		console.log(__filename);
 
 ---
 
-- Q. How to create a simple server in Node.js that returns Hello World?
+**- Q. How to create a simple server in Node.js that returns Hello World?**
 
 ``` js
 	/**
