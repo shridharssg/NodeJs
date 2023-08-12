@@ -66,57 +66,6 @@ An emitter object basically has two main features:
 [event emitter with streams](https://www.scaler.com/topics/nodejs/event-emitter-nodejs/)
 
 ---
-## <a id="expressNestJsIndex"> Express vs NestJs </a>
-Q. [Express & NestJs Comparison](https://medium.com/@karahanozen/express-js-vs-nest-js-2e39fc0ce22c)
-
-```diff
-Express and Nest are most known frameworks for creating back-end applications with Node.js
-
-We can write code in nodejs but without framework we need to write lots of code. 
-which is difficult to maintain, not error friendly when application grows.
-also its difficult for unit testing.
-
-to overcome this we used frameworks like express, nestjs.
-
-
-- Express : 
-	express handles request/response control, routing, serving static files, and middlewares for us. 
-
-
-- Why NestJS Exist ?
-
-the problem with express is architecture.
-Express is very minimalistic and straightforward, which provides flexibility to the users. 
-The flexibility is very beneficial for experienced users or complex scenarios, but the flexibility can cause an increase in errors and structural mistakes.
-In addition, applications nowadays require lots of extra logic like request validation, authorization, documentation, testing, logging etc.
-So thinking the express only gives us a few features, people need to solve these requirements using other libraries or frameworks. 
-That is why Nest.js exist.
-
-
-- Nest.js
-
-Nest is a framework for building efficient, scalable Node.js server-side applications.
-Nest is built in top of common Node.js frameworks (Express, Fastify). 
-It uses progressive JavaScript, is built with and fully supports TypeScript 
-It has a simple design with 3 main components: controllers, modules and providers.
-
-    + Controllers: 
-        They handle the incoming requests and return responses to the client-side.
-
-    + Providers: 
-        These are the fundamental concepts of NestJS that you can treat as services, repositories, factories, helpers, etc.
-        You can create and inject them into controllers or other providers as they are designed to abstract any complexity and logic.
-
-    + Modules: 
-        These are the classes. 
-        A module is a reusable chunk of code that has a separate functionality. 
-        The entire source code is organized and structured into modules. 
-        Each application will have at least one root module which is the starting point.
-
-   Diff between Experess & NestJs
-	plz check the link	
-```
----
 
 ## <a id="middlewareIndex"> Middleware </a>
 Q. [Middleware & Types](https://selvaganesh93.medium.com/how-node-js-middleware-works-d8e02a936113)
