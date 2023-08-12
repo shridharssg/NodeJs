@@ -453,7 +453,7 @@ Each type of Stream is an EventEmitter instance and throws several events at dif
    •	error − This event is fired when there is any error receiving or writing data.
    •	finish − This event is fired when all the data has been flushed to underlying system.
 
-[Stream Example]([url](https://www.freecodecamp.org/news/node-js-streams-everything-you-need-to-know-c9141306be93/)
+[Stream Example](https://www.freecodecamp.org/news/node-js-streams-everything-you-need-to-know-c9141306be93/)
 
 ```
 [Back to Top](#nodeJSIndex)
@@ -462,23 +462,48 @@ Each type of Stream is an EventEmitter instance and throws several events at dif
 
 ``` diff
 
-- Q. What are the core modules of Node.js?
+- Q. What are the modules in Node.js?
 
-	Node.js has a set of core modules that are part of the platform and come with the Node.js installation.
-	These modules can be loaded into the program by using the require function.
+**What are Node.js modules?**
+We can refer to modules as small encapsulated units which can be reused and shared with anyone.
+Easier to maintain and debug because they are separated pieces of code from each other.
+Each module can also be stored in its own JavaScript file in its own folder. Then import that file when we need to use that module.
 
-Syntax:
-	const module = require('module_name');
+Node.js modules can be categorized into three types 
+	Core modules — Inbuilt modules in the node.js
+	User-created modules — Modules created by the user
+	Third-party modules — Shared modules created and maintained by others
+
+**Core modules in Node.js**
+	Basically, core modules are modules that are built into node.js these modules come automatically with the node.js installation.
+	when you creating a node project these modules are available to use without any extra installations.
+	before using core modules we need to import those modules into our project files using require keyword
+
+	Syntax:
+		const module = require('module_name');
 
 Example:
+	File System module
+		It is used to perform operations on files.
+		It can be accessed with require('fs').
 
-	const http = require('http');
-	
-	http.createServer(function (req, res) {
-	  res.writeHead(200, {'Content-Type': 'text/html'});
-	  res.write('Welcome to Node.js!');
-	  res.end();
-	}).listen(3000);
+	HTTP module
+		It is used to create Http server and Http client. It can be accessed with require('http').
+
+	OS module
+		It is used to provide basic operating system related utility functions.
+		It can be accessed with require('os').
+
+	[For More Core Modules](https://www.dotnettricks.com/learn/nodejs/exploring-nodejs-core-modules)
+
+[Node.js Local Module](https://www.tutorialsteacher.com/nodejs/nodejs-local-modules)
+
+	Local modules are modules created locally in your Node.js application.
+	These modules include different functionalities of your application in separate files and folders.
+	For example, if you need to connect to MongoDB and fetch data then you can create a module for it,
+	which can be reused in your application.
+
+[Export Module](https://www.tutorialsteacher.com/nodejs/nodejs-module-exports)
 
 ```
 
