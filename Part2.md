@@ -45,7 +45,7 @@ Example:
 
 ---
 
--** Q. What are the global objects of Node.js?**
+** Q. What are the global objects of Node.js?**
   
 	Node.js Global Objects are the objects that are available in all modules.
 	Global Objects are built-in objects that are part of the JavaScript and can be used directly
