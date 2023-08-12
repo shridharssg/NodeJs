@@ -20,6 +20,7 @@ Node.js modules can be categorized into three types
 		const module = require('module_name');
 
 Example:
+
 	File System module
 		It is used to perform operations on files.
 		It can be accessed with require('fs').
