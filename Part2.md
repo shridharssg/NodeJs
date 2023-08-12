@@ -96,7 +96,7 @@ These objects are modules, functions, strings and object itself as explained bel
 
 ---
 
-**- Q. How to create a simple server in Node.js that returns Hello World?**
+**Q. How to create a simple server in Node.js that returns Hello World?**
 
 ``` js
 	/**
