@@ -23,11 +23,24 @@
 21. [Express vs NestJs](#expressNestJsIndex)
 
 ---
+
+## <a id="promisesIndex"> Promises </a>
+Q. [Promise](https://dotnettutorials.net/lesson/javascript-promise/)
+Q. [Promise Chaining](https://dotnettutorials.net/lesson/promise-chaining-in-javascript/)
+Q. [Promise Types](https://dotnettutorials.net/lesson/javascript-promise-race-vs-promise-all/)
+
+---
+
+## <a id="asyncAwait"> Async Await </a>
+Q. [Async Await](https://dotnettutorials.net/lesson/javascript-async-await/)
+
+---
+
 ## <a id="jsonWebTokenIndex"> Json Web Token </a>
 Q. [JSON Web Token](https://www.bezkoder.com/jwt-json-web-token/) OR [video](https://www.youtube.com/watch?v=S20PCL9e_ks)
 
-
 ---
+
 ## <a id="eventIndex"> Event Emitter and Events </a>
 The EventEmitter is a class that facilitates communication/interaction between objects in Node.js. 
 The EventEmitter class can be used to create and handle custom events.
