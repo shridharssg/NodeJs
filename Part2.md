@@ -45,6 +45,8 @@ Example:
 
 ---
 
+``` js
+
 ** Q. What are the global objects of Node.js?**
   
 	Node.js Global Objects are the objects that are available in all modules.
@@ -93,6 +95,7 @@ These objects are modules, functions, strings and object itself as explained bel
 		The value inside a module is the path to that module file.
 	
 		console.log(__filename);
+```
 
 ---
 
@@ -165,5 +168,40 @@ It has a simple design with 3 main components: controllers, modules and provider
    Diff between Experess & NestJs
 	plz check the link	
 ```
+
 ---
 
+Q. Routing
+
+Routing refers to determining how an application responds to a client request to a particular endpoint,
+which is a URI (or path) and a specific HTTP request method (GET, POST, and so on).
+
+Each route can have one or more handler functions, which are executed when the route is matched.
+
+Route definition takes the following structure:
+
+
+	app.METHOD(PATH, HANDLER)
+	Where:
+
+	app is an instance of express.
+	METHOD is an HTTP request method, in lowercase.
+	PATH is a path on the server.
+	HANDLER is the function executed when the route is matched.
+ 
+
+These routing methods specify a callback function (sometimes called “handler functions”) called when the 
+application receives a request to the specified route (endpoint) and HTTP method. 
+In other words, the application “listens” for requests that match the specified route(s) and method(s), 
+and when it detects a match, it calls the specified callback function.
+
+The routing methods can have more than one callback function as arguments. With multiple callback functions, it is important to provide next as an argument to the callback function and then call next() within the body of the function to hand off control to the next callback.
+
+The following examples illustrate defining simple routes.
+
+Respond with Hello World! on the homepage:
+	
+	app.get('/', (req, res) => {
+	  res.send('Hello World!')
+	})
+ 
