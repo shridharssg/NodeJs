@@ -316,3 +316,6 @@ Here is an example to demonstrate this:
   
   		On the other hand, when you use router.get(), the route is added to the router, which can then be mounted on
     		the Express application using the app.use() method.
+
+In general, it is recommended to use router.get() when building modular applications as it allows to separate the different 
+routes into different files and also to use router.use() to apply middleware to a specific set of routes.
