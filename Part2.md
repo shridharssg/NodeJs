@@ -319,3 +319,53 @@ Here is an example to demonstrate this:
 
 In general, it is recommended to use router.get() when building modular applications as it allows to separate the different 
 routes into different files and also to use router.use() to apply middleware to a specific set of routes.
+
+---
+
+**Q. app.js vs server.js**
+
+Link : https://dev.to/superiqbal7/separating-app-and-server-in-express-why-it-matters-and-how-it-benefits-your-application-149d
+
+app.js is responsible for defining the routes, middleware, and other application-level functionality. 
+
+server.js, on the other hand, is responsible for creating the server, listening for incoming requests, and handling errors.
+
+Thus we can keep our code organized and maintainable.
+
+If we need to make changes to the application logic or routes, we can do so in the app.js file without worrying about the server setup. 
+Similarly, if we need to make changes to the server configuration, we can do so in the server.js file without affecting the application logic.
+
+app.js file:
+
+	const express = require('express');
+	const app = express();
+	
+	app.get('/', (req, res) => {
+	  res.send('Hello World!');
+	});
+	
+	module.exports = app;
+
+server.js file:
+
+	const app = require('./app');
+	
+	const PORT = process.env.PORT || 3000;
+	
+	app.listen(PORT, () => {
+	  console.log(`Server listening on port ${PORT}`);
+	});
+
+
+In above code snippet, the app.js file is responsible for defining the Express application and its routes, 
+while server.js creates a new HTTP server instance and passes it to the app module. 
+This approach separates the server configuration from the application's functionality.
+
+**Easier testing**
+
+Separating app.js and server.js not only draws a clean separation of concerns but also significantly easy for mocking and testing the system by testing the API in-process, without performing network calls
+
+**Improved scalability**
+
+Finally, separating app.js and server.js can improve the application's scalability. By breaking up the code into smaller modules,
+it becomes easier to add new features or modify existing ones without having to touch the entire application codebase.
