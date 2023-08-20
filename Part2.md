@@ -139,10 +139,12 @@ to overcome this we used frameworks like express, nestjs.
 - Why NestJS Exist ?
 
 the problem with express is architecture.
-Express is very minimalistic and straightforward, which provides flexibility to the users. 
-The flexibility is very beneficial for experienced users or complex scenarios, but the flexibility can cause an increase in errors and structural mistakes.
-In addition, applications nowadays require lots of extra logic like request validation, authorization, documentation, testing, logging etc.
-So thinking the express only gives us a few features, people need to solve these requirements using other libraries or frameworks. 
+* Express is very minimalistic and straightforward, which provides flexibility to the users. 
+* The flexibility is very beneficial for experienced users or complex scenarios, but the flexibility can cause
+ an increase in errors and structural mistakes.
+* In addition, applications nowadays require lots of extra logic like request validation, authorization,
+documentation, testing, logging etc.
+* So thinking the express only gives us a few features, people need to solve these requirements using other libraries or frameworks. 
 That is why Nest.js exist.
 
 - Nest.js
@@ -157,7 +159,8 @@ It has a simple design with 3 main components: controllers, modules and provider
 
     + Providers: 
         These are the fundamental concepts of NestJS that you can treat as services, repositories, factories, helpers, etc.
-        You can create and inject them into controllers or other providers as they are designed to abstract any complexity and logic.
+        You can create and inject them into controllers or other providers as they are designed to abstract
+	any complexity and logic.
 
     + Modules: 
         These are the classes. 
@@ -171,7 +174,7 @@ It has a simple design with 3 main components: controllers, modules and provider
 
 ---
 
-Q. Routing
+**Q. Routing**
 
 Routing refers to determining how an application responds to a client request to a particular endpoint,
 which is a URI (or path) and a specific HTTP request method (GET, POST, and so on).
@@ -195,7 +198,9 @@ application receives a request to the specified route (endpoint) and HTTP method
 In other words, the application “listens” for requests that match the specified route(s) and method(s), 
 and when it detects a match, it calls the specified callback function.
 
-The routing methods can have more than one callback function as arguments. With multiple callback functions, it is important to provide next as an argument to the callback function and then call next() within the body of the function to hand off control to the next callback.
+The routing methods can have more than one callback function as arguments. With multiple callback functions, 
+it is important to provide next as an argument to the callback function and then call next() within the body 
+of the function to hand off control to the next callback.
 
 The following examples illustrate defining simple routes.
 
@@ -204,4 +209,99 @@ Respond with Hello World! on the homepage:
 	app.get('/', (req, res) => {
 	  res.send('Hello World!')
 	})
+ ---
+
+**Q. Difference between app.use vs app.get vs app.all**
+
+ app.use()
  
+	 * It is generally used for introducing middlewares in your application and can handle all type of HTTP requests.
+  
+	 * Use app.use if you want to add some middleware (a handler for the HTTP request before it arrives to the routes
+  	   you've set up in Express).
+    
+    	* We can also use app.use to enhance modularization in application (Express.Router written in a separate file)
+
+	Ex. 1 : middleware
+ 
+		//guard (create  middleware)
+		let requiresLogin = function(req, res, next) {
+		  if (! req.session.loggedIn) {
+		    err = new Error("Not authorized");
+		    next(err);
+		  }
+		  return next();
+		};
+	
+		//protected route by using middleware - requiresLogin
+		app.get('dashboard', requiresLogin, function (req, res) {
+		  res.render('home');
+		});
+
+	Ex.2 : Enhance modularization by writting routing in seperate files
+
+	In node.js, when we have multiple Express.Router written in a separate file to enhance modularization,
+	we need to import each route file into the application server file and add lots of app.use() statements.  
+	Now, if we add a new router we need to remember to add that too in the file where the application server is written.
+	
+		const express = require('express');
+		const app = express();
+		const port = 5000;
+		
+		// written in seperate files, and import here
+		const userRouter = require('./routes/user.js')();
+		const orderRouter = require('./routes/order.js')();
+		
+		// enhance modularization
+		app.use(userRouter);
+		app.use(orderRouter);
+		
+		app.listen(port, () => {
+		  console.log(`My app listening at http://localhost:${port}`);
+		});  	
+
+link : https://www.codespeedy.com/create-separate-routes-file-in-node-express-js/
+
+---
+
+app.get() 
+	 It is used only for handling GET HTTP requests.
+
+	app.get('/', function (req, res) {
+	  // ...
+	});
+
+Same thing for app.post, app.delete : It is used only for handling post/delete HTTP requests
+
+---
+
+app.use & app.all. 
+	both can handle all kind of HTTP requests. 
+	But there are some differences which recommend us to use app.use for middlewares and app.all for route handling.
+
+	app.use() → It takes only one callback.
+	app.all() → It can take multiple callbacks.
+
+
+app.use() will only see whether url starts with specified path.
+
+But, app.all() will match the complete path.
+
+Here is an example to demonstrate this:
+
+	app.use( "/product" , mymiddleware);
+	// will match /product
+	// will match /product/cool
+	// will match /product/foo
+	
+	app.all( "/product" , handler);
+	// will match /product
+	// won't match /product/cool   <-- important
+	// won't match /product/foo    <-- important
+	
+	app.all( "/product/*" , handler);
+	// won't match /product        <-- Important
+	// will match /product/cool
+	// will match /product/foo
+	
+
