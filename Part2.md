@@ -211,7 +211,7 @@ Respond with Hello World! on the homepage:
 	})
  ---
 
-**Q. Difference between app.use vs app.get vs app.all**
+**Q. Difference between app.use vs app.get vs app.all vs router.get**
 
  app.use()
  
@@ -303,5 +303,16 @@ Here is an example to demonstrate this:
 	// won't match /product        <-- Important
 	// will match /product/cool
 	// will match /product/foo
-	
 
+ ---
+ app.get vs router.get
+ 
+ 	In Express.js, app.get() and router.get() are both used to handle HTTP GET requests to a specific route or path.
+  	The main difference between the two is that 
+   		app.get() is a method on the Express application instance, whereas
+   		router.get() is a method on an instance of the Express Router.
+
+		When you use app.get(), the route is added directly to the Express application, and the callback function will be 			executed when a GET request is made to the specified path.
+  
+  		On the other hand, when you use router.get(), the route is added to the router, which can then be mounted on
+    		the Express application using the app.use() method.
