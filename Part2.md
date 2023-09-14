@@ -378,4 +378,5 @@ it becomes easier to add new features or modify existing ones without having to 
 
 By default, libuv uses a thread pool with 4 threads, but this number can be changed by setting the UV_THREADPOOL_SIZE environment variable. This means that you can increase or decrease the number of threads in the thread pool depending on the requirements of your application.
 
+we are allowed to change the default value of 4 threads to anything up to 1024 threads. We achieve this by setting the UV_THREADPOOL_SIZE Node variable.
 ---
