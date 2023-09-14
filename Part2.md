@@ -50,7 +50,6 @@ module.exports.log = function (msg) {
 
 **app.js**
 
-
 var msg = require('./Log.js');
 
 msg.log('Hello World');
