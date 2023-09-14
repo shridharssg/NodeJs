@@ -325,7 +325,8 @@ Here is an example to demonstrate this:
    		app.get() is a method on the Express application instance, whereas
    		router.get() is a method on an instance of the Express Router.
 
-		When you use app.get(), the route is added directly to the Express application, and the callback function will be 			executed when a GET request is made to the specified path.
+		When you use app.get(), the route is added directly to the Express application, and the callback function will be 
+  		executed when a GET request is made to the specified path.
   
   		On the other hand, when you use router.get(), the route is added to the router, which can then be mounted on
     		the Express application using the app.use() method.
