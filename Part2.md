@@ -369,3 +369,13 @@ Separating app.js and server.js not only draws a clean separation of concerns bu
 
 Finally, separating app.js and server.js can improve the application's scalability. By breaking up the code into smaller modules,
 it becomes easier to add new features or modify existing ones without having to touch the entire application codebase.
+
+---
+
+**Q. Thread Size and Increase**
+
+4 threads
+
+By default, libuv uses a thread pool with 4 threads, but this number can be changed by setting the UV_THREADPOOL_SIZE environment variable. This means that you can increase or decrease the number of threads in the thread pool depending on the requirements of your application.
+
+---
