@@ -41,6 +41,20 @@ Example:
 	For example, if you need to connect to MongoDB and fetch data then you can create a module for it,
 	which can be reused in your application.
 
+Export Module
+
+**Log.js**
+module.exports.log = function (msg) { 
+    console.log(msg);
+};
+
+**app.js**
+
+
+var msg = require('./Log.js');
+
+msg.log('Hello World');
+
 [Export Module](https://www.tutorialsteacher.com/nodejs/nodejs-module-exports)
 
 ---
