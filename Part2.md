@@ -9,8 +9,10 @@ Q7. app.js vs server.js
 Q8. Thread Size and Increase
 
 pending
-15. [Rest API and HTTP Methods]
-16. [Ways to Improve performance]
+Q. [Rest API and HTTP Methods]
+Q. [Package.json vs Package-lock.json]
+Q. [Ways to Improve performance]
+Q. [Asynchronous and Synchronous]
 ```
 
 **Q1. What are Node.js modules?**
