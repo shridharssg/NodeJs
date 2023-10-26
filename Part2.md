@@ -7,6 +7,10 @@ Q5. Routing
 Q6. Difference between app.use vs app.get vs app.all vs router.get
 Q7. app.js vs server.js
 Q8. Thread Size and Increase
+
+pending
+15. [Rest API and HTTP Methods]
+16. [Ways to Improve performance]
 ```
 
 **Q1. What are Node.js modules?**
