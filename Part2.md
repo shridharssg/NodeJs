@@ -11,7 +11,6 @@ Q8. Thread Size and Increase
 pending
 Q. [Rest API and HTTP Methods]
 Q. [Package.json vs Package-lock.json]
-Q. [Ways to Improve performance]
 Q. [Asynchronous and Synchronous]
 ```
 
