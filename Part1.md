@@ -1,15 +1,23 @@
 # <a id="nodeJSIndex"> NodeJs </a>
 
-
 Q. [Promises and Types](#promisesIndex)
+
 Q. [Async Await](#asyncAwait)
+
 Q. [Json Web Token](#jsonWebTokenIndex)
+
 Q. [Event Emitter and Events](#eventIndex)
+
 Q. [Middleware and Types](#middlewareIndex)
+
 Q. [Microservices](#microIndex)
+
 Q. [Secure Rest API](#securityIndex)
+
 Q. [Architecture And Event Loop Phases](#architectureIndex)
+
 Q. [File System](#fsIndex)
+
 Q. [Data Stream](#dataIndex)
 
 ---
