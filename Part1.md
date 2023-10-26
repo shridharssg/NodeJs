@@ -135,7 +135,7 @@ incidents are also essential for keeping the API secure.
 
 ---
 ``` diff
-<a id="architectureIndex"> Architecture And Event Loop Phases </a>
+## <a id="architectureIndex"> Architecture And Event Loop Phases </a>
 Q. [NodeJs Architecture](https://www.digitalocean.com/community/tutorials/node-js-architecture-single-threaded-event-loop)
 
 + Node JS Platform
@@ -209,7 +209,7 @@ Received on the Single Thread and Node internally manages the Execution of block
 ---
 
 ```diff
-
+## <a> Event Loop Phases </a>
 Q. [Event Loop Phases](https://javascript.plainenglish.io/node-js-event-loop-explained-d27647ec8d53)
 
 - The 6 phases of the Node.js event
@@ -303,7 +303,7 @@ Microtasks are executed after the main thread and each phase of the event loop. 
 
 ``` diff
 
-<a id="fsIndex"> File System </a>
+## <a id="fsIndex"> File System </a>
 
 Q. [Node.js file system: ](https://www.w3schools.com/nodejs/nodejs_filesystem.asp)
 
@@ -382,7 +382,7 @@ fs.rename('mynewfile1.txt', 'myrenamedfile.txt', function (err) {
 
 ``` diff
 
-<a id="dataIndex"> Data Stream </a>
+## <a id="dataIndex"> Data Stream </a>
 
 Streams are objects that let you read data from a source or write data to a destination in continuous fashion.
 Streaming means listening to music or watching video in real time, instead of downloading a file to your computer
