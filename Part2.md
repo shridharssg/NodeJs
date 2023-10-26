@@ -1,4 +1,15 @@
-**Q. What are Node.js modules?**
+```js
+Q1. What are Node.js modules?
+Q2. What are the global objects of Node.js?
+Q3. How to create a simple server in Node.js that returns Hello World?
+Q4. Express vs NestJs
+Q5. Routing
+Q6. Difference between app.use vs app.get vs app.all vs router.get
+Q7. app.js vs server.js
+Q8. Thread Size and Increase
+```
+
+**Q1. What are Node.js modules?**
 
 We can refer to modules as small encapsulated units which can be reused and shared with anyone.
 Easier to maintain and debug because they are separated pieces of code from each other.
@@ -60,7 +71,7 @@ msg.log('Hello World');
 
 ``` js
 
-** Q. What are the global objects of Node.js?**
+** Q2. What are the global objects of Node.js?**
   
 	Node.js Global Objects are the objects that are available in all modules.
 	Global Objects are built-in objects that are part of the JavaScript and can be used directly
@@ -112,7 +123,7 @@ These objects are modules, functions, strings and object itself as explained bel
 
 ---
 
-**Q. How to create a simple server in Node.js that returns Hello World?**
+**Q3. How to create a simple server in Node.js that returns Hello World?**
 
 ``` js
 	/**
@@ -133,7 +144,7 @@ These objects are modules, functions, strings and object itself as explained bel
 
 ---
 ## <a id="expressNestJsIndex"> Express vs NestJs </a>
-Q. [Express & NestJs Comparison](https://medium.com/@karahanozen/express-js-vs-nest-js-2e39fc0ce22c)
+Q4. [Express & NestJs Comparison](https://medium.com/@karahanozen/express-js-vs-nest-js-2e39fc0ce22c)
 
 ```diff
 
