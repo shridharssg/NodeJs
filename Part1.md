@@ -20,6 +20,8 @@ Q. [File System](#fsIndex)
 
 Q. [Data Stream](#dataIndex)
 
+Q. [Clutser](#cluster)
+
 ---
 
 ## <a id="promisesIndex"> Promises </a>
