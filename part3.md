@@ -268,6 +268,8 @@ and send the data as a response.
 https://blog.appsignal.com/2021/09/01/best-practices-for-logging-in-nodejs.html
 
 **Q6. Error Handling in nodeJS**
-https://blog.appsignal.com/2021/09/01/best-practices-for-logging-in-nodejs.html
+https://blog.appsignal.com/2022/11/16/nodejs-error-handling-tips-and-tricks.html
+
+https://medium.com/backenders-club/error-handling-in-node-js-ef5cbfa59992
 
 
