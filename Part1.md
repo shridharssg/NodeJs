@@ -6,6 +6,8 @@ Q. [Async Await](#asyncAwait)
 
 Q. [Json Web Token](#jsonWebTokenIndex)
 
+Q. [Validate API with JWT](#validateAPI)
+
 Q. [Event Emitter and Events](#eventIndex)
 
 Q. [Middleware and Types](#middlewareIndex)
@@ -38,6 +40,11 @@ Q. [Async Await](https://dotnettutorials.net/lesson/javascript-async-await/)
 
 ## <a id="jsonWebTokenIndex"> Json Web Token </a>
 Q. [JSON Web Token](https://www.bezkoder.com/jwt-json-web-token/) OR [video](https://www.youtube.com/watch?v=S20PCL9e_ks)
+
+---
+
+## <a id="validateAPI"> Validate API With JWT </a>
+Q. [Validate API With JWT](https://medium.com/@prashantramnyc/authenticate-rest-apis-in-node-js-using-jwt-json-web-tokens-f0e97669aad3)
 
 ---
 
