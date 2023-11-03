@@ -8,6 +8,10 @@ Q3. how do we use cashing in nodejs
 
 Q4. Ways to Improve application performance
 
+Q5. Logging in Nodejs
+
+Q6. Error Handling in Nodejs
+
 ```
 
 **Q1. How to read file which contains 1 lacs records in nodejs**
@@ -258,4 +262,12 @@ app.listen(3000, () => {
 In this Redis example, we use the ioredis library to interact with the Redis server.
 We check if the data is cached in Redis and, if not, fetch the data, cache it in Redis with a specified TTL,
 and send the data as a response.
+
+
+**Q5. logging in nodeJS**
+https://blog.appsignal.com/2021/09/01/best-practices-for-logging-in-nodejs.html
+
+**Q6. Error Handling in nodeJS**
+https://blog.appsignal.com/2021/09/01/best-practices-for-logging-in-nodejs.html
+
 
