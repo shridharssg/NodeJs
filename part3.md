@@ -12,6 +12,8 @@ Q5. Logging in Nodejs
 
 Q6. Error Handling in Nodejs
 
+Q6. Exist Codes in Nodejs
+
 ```
 
 **Q1. How to read file which contains 1 lacs records in nodejs**
