@@ -244,6 +244,7 @@ const app = express();
 const redis = new Redis();
 
 app.get('/data', async (req, res) => {
+
   const cachedData = await redis.get('cachedData');
   if (cachedData) {
     // If data is cached in Redis, send it as the response
