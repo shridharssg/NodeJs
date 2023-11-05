@@ -2,10 +2,13 @@
 Q. Logging
 Q. Swagger
 ```
+---
 
-**Logging**
+**Q. Logging**
 
 https://betterstack.com/community/guides/logging/how-to-install-setup-and-use-winston-and-morgan-to-log-node-js-applications/
+
+---
 
 for local development, Console.log used, but cant depend on Console.log in prod bcz it doesnt support log levels like warn, error or debug
 
@@ -76,12 +79,14 @@ const logger = createLogger({
     new winston.transports.Console()
   ]
 });
-
+```
 
 When you want to log a message, you can reference the desired level directly on the custom logger, as shown below:
 
+```
 logger.info("System launch"); // {"message":"System launch","level":"info"}
 logger.fatal("A critical failure!"); // {"message":"A critical failure!","level":"fatal"}
+```
 
 The level property on the logger determines which log messages will be emitted to the configured transports.
 For example, level property was set to info in the previous section, only log entries with a minimum severity
@@ -91,11 +96,14 @@ This means that only the info, warn,fatal and error messages will produce output
 To cause the other levels to produce output, you'll need to change the value of level property to the desired minimum.
  The reason for this configuration is so that you'll be able to run your application in production
  at one level (say info) and your development/testing/staging environments can be set to a less severe level like debug or silly, causing more information to be emitted.
-```
+
+---
+
 **Formatting your log messages**
 	Winston outputs its logs in JSON format by default, but it also supports other formats which are accessible on the winston.format object
 
  **adds a timestamp field to the each log entry:**
+ 
 ```
 const winston = require('winston');
 const { combine, timestamp, json } = winston.format;
@@ -112,15 +120,20 @@ logger.info('Info message')
 
 o/p: {"level":"info","message":"Info message","timestamp":"2022-01-25T15:50:09.641Z"}
 
+```
 
 combine() :  method merges multiple formats into one,
+
 colorize() : assigns colors to the different log levels so that each level is easily identifiable.
+
 timestamp() : method outputs a datatime value that corresponds to the time that the message was emitted.
+
 align() :  method aligns the log messages
 
 While you can format your log entries in any way you wish, the recommended practice for server applications is to stick with a structured logging format (like JSON)
 
-```
+---
+
 **Configuring transports in Winston**
 
 Transports in Winston refer to the storage location for your log entries. 
@@ -157,10 +170,12 @@ const logger = winston.createLogger({
 logger.info('Info message');
 logger.error('Error message');
 logger.warn('Warning message');
+```
 
 The snippet above configures the logger to output all emitted log messages to a file named combined.log.
 When you run the snippet above, this file will be created with the following contents:
 
+```
 combined.log file:
 
 {"level":"info","message":"Info message","timestamp":"2022-01-26T09:38:17.747Z"}
