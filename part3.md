@@ -13,6 +13,7 @@ Q5. Error Handling in Nodejs
 Q6. Exist Codes in Nodejs
 
 ```
+---
 
 **Q1. How to read file which contains 1 lacs records in nodejs**
 
@@ -77,6 +78,7 @@ We set the encoding to 'utf8' to read the file as a text file.
 Using stream based approach allows nodejs to read and process the file in smaller manageable chunks, which is memroy-efficient and suitable for handling large files. 
 This approach is important when working with files that contain a significant number of records.
 
+---
 
 **Q2. how do we increase api performance in nodejs**
 
@@ -162,6 +164,7 @@ Regularly conduct load testing and benchmarking to identify performance bottlene
 Remember that performance improvements may vary depending on your specific application and its use cases.
  It's essential to profile, monitor, and continually optimize your Node.js API to achieve the best results.
 ```
+---
 
 **Q3. how do we use cashing in nodejs**
 
@@ -263,6 +266,43 @@ In this Redis example, we use the ioredis library to interact with the Redis ser
 We check if the data is cached in Redis and, if not, fetch the data, cache it in Redis with a specified TTL,
 and send the data as a response.
 
+---
+
+**Q. Exist Code in NodeJS**
+
+Exit Code 0: Node.js normally ends with a status code of 0 whenever there are no more open async operations and the code doesn’t produce any uncaught exceptions.
+
+**Exit Code 1**, Uncaught Fatal Exception: If an uncaught exception occurs and it is not resolved by a domain or a “uncaughtException” event handler, Node.js exits with an exit code of 1.
+
+**Exit Code 2**: The exit code 2 is reserved by Bash for abuse of built-in features.
+
+**Exit Code 3**, Internal JavaScript Parse Error: Node.js exit code 3 is for a status code when internal code cannot be parsed. This code is for development only usage.
+
+**Exit Code 4**, Internal JavaScript Evaluation Failure: Node.js exit code 4 happens rarely and only for development. This exit code happens when your JavaScript source code fails to return a function value
+
+**Exit Code 5**, Fatal Error : Exit code 5 is for fatal errors. This happens when V8 engine cannot recover.
+
+
+**Implicitly, the Node.js process will exit when it reaches the end of the script.**
+
+**Explicilty, We can exist nodeJS by using following functions**
+
+**process.exist(1)** : function exits from the current Node.js process. It takes an exit code, which is an integer.
+
+**process.kill()**
+  We can also exit Node.js using process.kill to kill the running Node.js process.
+  The difference between this and process.exit is that process.kill takes the pid, or process id, of the process we want to kill
+
+  process.kill(process.pid);
+
+**process.abort()** :
+  he difference between process.abort, process.kill, and process.exit is that process.abort always exits
+  Node.js immediately and generates a core file. In addition, no event callbacks will run.
+
+The process object is a global variable that lets us manage the current Node.js process.
+Since it is a global, we can access it from anywhere inside a Node.js program without using require to import it.
+
+---
 
 **Q6. Error Handling in nodeJS**
 https://blog.appsignal.com/2022/11/16/nodejs-error-handling-tips-and-tricks.html
