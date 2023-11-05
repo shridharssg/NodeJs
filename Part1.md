@@ -77,6 +77,15 @@ An emitter object basically has two main features:
 ## <a id="middlewareIndex"> Middleware </a>
 Q. [Middleware & Types](https://selvaganesh93.medium.com/how-node-js-middleware-works-d8e02a936113)
 
+next () : Pass control to the next middleware or route handler
+```
+const normalMiddleware = (req, res, next) => {
+  // Perform some operations
+  console.log('Executing normal middleware');
+  next(); // Pass control to the next middleware or route handler
+};
+```
+
 ---
 ## <a id="microIndex"> Microservices </a>
 Q. [How to create a microservices in Node.js](https://www.turing.com/kb/how-to-build-microservices-with-node-js)
