@@ -1,21 +1,27 @@
 **Q6. Error Handling in nodeJS**
+
 https://blog.appsignal.com/2022/11/16/nodejs-error-handling-tips-and-tricks.html
 
 https://medium.com/backenders-club/error-handling-in-node-js-ef5cbfa59992
+
+---
 
 Error handling a mandatory step in application development.
 
 **Common Types of Errors**
 
-Programming Errors : These errors generally occur in development (when writing our code).
-Examples of such errors are syntax errors, logic errors, poorly written asynchronous code
+   **Programming Errors :** 
+   
+        These errors generally occur in development (when writing our code).
+        Examples of such errors are syntax errors, logic errors, poorly written asynchronous code
+        Most syntax and type errors can be minimized by using Typescript linting Tslint, eslint, jshint, and jslint.
 
-Most syntax and type errors can be minimized by using Typescript linting Tslint, eslint, jshint, and jslint.
+ **Operational Errors**
 
-**Operational Errors**
+        These are the kind of errors that should be handled in our code. 
+        They represent runtime problems like invalid inputs, database connection failure, unavailability of resources
 
-These are the kind of errors that should be handled in our code. They represent runtime problems like 
-invalid inputs, database connection failure, unavailability of resources
+---
 
 **Handling Errors in Node.js**
 
