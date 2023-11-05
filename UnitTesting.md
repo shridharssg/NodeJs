@@ -48,17 +48,13 @@ This simply validates whether the variable ‘exampleArray’ has a length of 3 
 npm i — g mocha
 
 npm install chai
-
+```
 {
-
   "scripts": {
-  
     "test": "mocha"
-    
   }
-  
 }
-
+```
 
 Writing tests using Mocha and Chai
 
