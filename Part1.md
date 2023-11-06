@@ -45,7 +45,7 @@ Q. [JSON Web Token](https://www.bezkoder.com/jwt-json-web-token/) OR [video](htt
 
 ## <a id="validateAPI"> Validate API With JWT </a>
 Q. [Validate API With JWT](https://medium.com/@prashantramnyc/authenticate-rest-apis-in-node-js-using-jwt-json-web-tokens-f0e97669aad3)
-
+Q. [Refresh Token vs Access Token](https://medium.com/@techsuneel99/jwt-authentication-in-nodejs-refresh-jwt-with-cookie-based-token-37348ff685bf)
 ---
 
 ## <a id="eventIndex"> Event Emitter and Events </a>
