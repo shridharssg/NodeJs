@@ -1,3 +1,5 @@
+check : https://www.ibm.com/topics/message-brokers
+
 Concept of Message Broker:
 
 Broker means a third party/middleMan that helps to perform or achieve our goal
@@ -10,7 +12,7 @@ so hire a message broker, which helps service A and service B to communicate eac
 
 What are Message Brokers, and why do we need these?
  
-A message broker is a software component that acts as an intermediary between different applications or systems, This allows applications to communicate with each other by exchanging messages. even if they’re written in different programming languages
+A message broker is a software component that acts as an intermediary between different applications / systems / services, This allows them to communicate with each other and exchange information. even if they’re written in different programming languages
 
 why need ?
 For two applications to talk with each other, we first need some interface. Without it, it won’t be possible for them to communicate. That is why we need to define the interface. The defining thereby includes the transport way and the transport protocol selection like HTTP, MQTT, or SMTP.
