@@ -50,6 +50,18 @@ to deal with asynchronous operations, we often used the callback functions. Howe
 
 ES2017 introduced async and await build on top of promises and generators to write asynchronous actions inline. This makes asynchronous or callback code much easier to maintain and more readable.
 
+```
+async function f() {
+    //Promise code goes here
+    let value = await promise;// works only inside async functions
+    return 1;
+}
+```
+
+The keyword await, as the name describes it makes JavaScript wait until that promise settles and returns its result. It can be used within the async block only. It only makes the async block wait.
+
+A function which is defined as async is a function that can perform asynchronous actions but still look synchronous. 
+
 ---
 
 ## <a id="jsonWebTokenIndex"> Json Web Token </a>
