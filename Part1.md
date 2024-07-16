@@ -37,12 +37,18 @@ other link : https://www.digitalocean.com/community/tutorials/how-to-scale-node-
 ## <a id="promisesIndex"> Promises </a>
 Q. [Promise](https://dotnettutorials.net/lesson/javascript-promise/)
 Q. [Promise Chaining](https://dotnettutorials.net/lesson/promise-chaining-in-javascript/)
-Q. [Promise Types](https://dotnettutorials.net/lesson/javascript-promise-race-vs-promise-all/)
+Q. [Promise Types](https://dotnettutorials.net/lesson/javascript-promise-race-vs-promise-all/)  
+
+promise.race() and promise.all()
 
 ---
 
 ## <a id="asyncAwait"> Async Await </a>
 Q. [Async Await](https://dotnettutorials.net/lesson/javascript-async-await/)
+
+to deal with asynchronous operations, we often used the callback functions. However, when we nest many callback functions, the code will be more difficult to maintain. And we end up with an unmanageable code issue which is known as the callback hell. So, to overcome this Promise came to rescue.
+
+ES2017 introduced async and await build on top of promises and generators to write asynchronous actions inline. This makes asynchronous or callback code much easier to maintain and more readable.
 
 ---
 
