@@ -6,7 +6,8 @@ GitHub: https://github.com/damian-sketch/Mocha/tree/master
 
 ---
 
-**Mocha** is an open-source Javascript test framework that runs on Nodejs and on the browser and is used for testing Synchronous and Asynchronous code.
+**Mocha** 
+It is an open-source Javascript test framework that runs on Nodejs and on the browser and is used for testing Synchronous and Asynchronous code.
 
 Mocha provides functions that are executed in a specific order and logs their results to a terminal window. Mocha uses hooks to organize its structure. 
 
