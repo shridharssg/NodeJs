@@ -33,16 +33,29 @@ A Test Suite is a collection of tests all relating to a similar functionality or
 
 ---
 
-**Chai**
+## **Chai**
 Mocha can be used with any assertion library but use Chai, a popular assertion library for Node.js and the browser. 
 It provides functions and methods which help you compare the output of a test with the expected result. 
 Chai provides clean syntax that reads almost like English. 
+
+The Chai API is broken down by style or task.
+
+## Assertion Styles
+
+The **Expect / Should** API covers the BDD assertion styles.
+
+The **Assert** API covers the TDD assertion style.
+
 
 An example of a Chai assertion is 
 
 **expect(exampleArray).to.have.lengthOf(3);**
 
 This simply validates whether the variable ‘exampleArray’ has a length of 3 or not.
+
+---
+
+**supertest** will be used to test our API endpoint. We will pass app as an argument to this.
 
 ---
 
