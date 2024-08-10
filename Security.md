@@ -1,0 +1,128 @@
+## To prevent Node.js from continuously hitting an API or malacious attack, you can implement the following strategies:
+
+1. *Rate Limiting*: Set a limit on the number of requests made to the API within a certain time frame. Use libraries like `rate-limiter-flexible` or `limiter` to achieve this.
+   
+2. *slow-down*: slows down responses rather than blocking them outright. Use to slow repeated requests to public APIs and/or endpoints such as password reset. Use libraries like 'express-slow-down' to achieve this.
+
+        ex for above both library : https://blog.appsignal.com/2024/04/03/how-to-implement-rate-limiting-in-express-for-nodejs.html
+ 
+3. *Caching*: Cache API responses in memory or a database to reduce the number of requests made. Use libraries like `node-cache` or `redis`.
+ 
+5. *Debouncing*: Group multiple requests into a single request using debouncing techniques. Use libraries like `lodash.debounce` or `debounce`.
+ 
+6. *Throttling*: Limit the number of requests made within a certain time frame. Use libraries like `throttle-debounce` or `p-throttle`.
+ 
+7. *Exponential Backoff*: Gradually increase the delay between requests after each failure. Use libraries like `backoff` or `retry-axios`.
+ 
+8. *Circuit Breaker Pattern*: Temporarily stop making requests when the API is down or responding with errors. Use libraries like `opossum` or `circuit-breaker-js`.
+ 
+9. *API Keys or Tokens*: Use API keys or tokens to authenticate and limit requests. Check with the API provider for their usage guidelines.
+ 
+10. *Request Queueing*: Queue requests and process them in batches to reduce the load on the API.
+ 
+11. *Monitor API Usage*: Keep an eye on API usage metrics to detect and prevent excessive requests.
+ 
+12. *Implement API Provider Guidelines*: Follow the guidelines and limits set by the API provider to avoid abuse and termination of service.
+ 
+By implementing these strategies, you can prevent Node.js from continuously hitting an API and ensure a more reliable and efficient application.
+
+---
+
+## Debounce and Throttling
+
+If you are a web developer, you might have encountered situations where you need to optimize the performance of your code that runs repeatedly within a short period of time. For example, you might have a search bar that fetches suggestions from the backend as the user types, or a resize event handler that adjusts the layout of your page. In these cases, you don’t want to execute your code too often, as it might cause unnecessary network requests, a laggy user interface, or high CPU usage.
+
+To solve this problem, you can use two techniques called debouncing and throttling. These techniques allow you to control the rate at which your code is executed, and reduce the number of times it is called.
+
+### What is Debouncing?
+Debouncing is a technique that delays the execution of a function until the user stops performing a certain action for a specified amount of time. For example, if you have a search bar that fetches suggestions from the backend as the user types, you can debounce the function that makes the API call, so that it only runs after the user stops typing for a few seconds. This way, you can avoid making too many API calls that might overload your server or return irrelevant results.
+
+To implement debouncing in JavaScript, you can use a timer variable to track the delay period. You can use the setTimeout function to set a timer that will execute your function after the delay period. You can also use the clearTimeout function to cancel the timer if the user performs the action again before the delay period ends. This way, you can ensure that your function only runs once after the user stops performing the action.
+
+Here is an example of how to implement debouncing in JavaScript:
+
+```
+  // A function that makes an API call with the search query
+  function searchHandler(query) {
+      // Make an API call with search query
+      getSearchResults(query);
+  }
+  // A debounce function that takes a function and a delay as parameters
+  function debounce(func, delay) {
+      // A timer variable to track the delay period
+      let timer;
+      // Return a function that takes arguments
+      return function(…args) {
+          // Clear the previous timer if any
+          clearTimeout(timer);
+          // Set a new timer that will execute the function after the delay period
+          timer = setTimeout(() => {
+              // Apply the function with arguments
+              func.apply(this, args);
+          }, delay);
+      };
+  }
+  // A debounced version of the search handler with 500ms delay
+  const debouncedSearchHandler = debounce(searchHandler, 500);
+  // Add an event listener to the search bar input
+  searchBar.addEventListener("input", (event) => {
+      // Get the value of the input
+      const query = event.target.value;
+      // Call the debounced search handler with the query
+      debouncedSearchHandler(query);
+  });
+
+```
+In this example, we have a searchHandler function that makes an API call with the search query. We also have a debounce function that takes a function and a delay as parameters, and returns a debounced version of that function. We use this debounce function to create a debouncedSearchHandler function with 500ms delay. We then add an event listener to the search bar input, and call the debouncedSearchHandler function with the input value. This way, we can ensure that we only make one API call after the user stops typing for 500ms.
+
+## What is Throttling?
+
+Throttling is a technique that limits the execution of a function to once in every specified time interval. For example, if you have a resize event handler that adjusts the layout of your page, you can throttle the function that updates the layout, so that it only runs once every 100ms. This way, you can avoid running your code too frequently, which might cause janky user interface or high CPU usage.
+
+To implement throttling in JavaScript, you can use a flag variable to track whether the function is already running or not. You can use the setTimeout function to set a timer that will reset the flag after the time interval. You can also use an if statement to check whether the flag is true or not before executing your function. This way, you can ensure that your function only runs once in every time interval.
+
+Here is an example of how to implement throttling in JavaScript:
+
+ ```
+    // A function that updates the layout of the page
+    function updateLayout() {
+        // Update layout logic
+    }
+    // A throttle function that takes a function and an interval as parameters
+    function throttle(func, interval) {
+        // A flag variable to track whether the function is running or not
+        let isRunning = false;
+        // Return a function that takes arguments
+        return function(…args) {
+            // If the function is not running
+            if (!isRunning) {
+                // Set the flag to true
+                isRunning = true;
+                // Apply the function with arguments
+                func.apply(this, args);
+                // Set a timer that will reset the flag after the interval
+                setTimeout(() => {
+                    // Set the flag to false
+                    isRunning = false;
+                }, interval);
+            }
+        };
+    }
+    // A throttled version of the update layout function with 100ms interval
+    const throttledUpdateLayout = throttle(updateLayout, 100);
+    // Add an event listener to the window resize event
+    window.addEventListener("resize", () => {
+        // Call the throttled update layout function
+        throttledUpdateLayout();
+    });
+ ```
+
+In this example, we have an updateLayout function that updates the layout of the page. We also have a throttle function that takes a function and an interval as parameters, and returns a throttled version of that function. We use this throttle function to create a throttledUpdateLayout function with 100ms interval. We then add an event listener to the window resize event, and call the throttledUpdateLayout function. This way, we can ensure that we only update the layout once every 100ms.
+
+## What is the Difference Between Debouncing and Throttling?
+
+The main difference between debouncing and throttling is that debouncing executes the function only after some cooling period, while throttling executes the function at a regular interval. Debouncing and throttling are both useful techniques to improve the performance of your code, but they have different use cases and effects.
+
+Debouncing is useful when you want to delay the execution of your code until the user stops performing a certain action. For example, you can use debouncing for autocomplete, where you want to wait for the user to stop typing before fetching suggestions from the backend. Debouncing can reduce the number of times your code is executed, but it can also introduce some latency in your user interface.
+
+Throttling is useful when you want to limit the execution of your code to a certain frequency. For example, you can use throttling for resize, where you want to update the layout of your page at a fixed rate. Throttling can improve the responsiveness of your user interface, but it can also cause some loss of information or accuracy in your code.
