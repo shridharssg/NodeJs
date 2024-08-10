@@ -1,34 +1,131 @@
 ## To prevent Node.js from continuously hitting an API or malacious attack, you can implement the following strategies:
 
-1. *Rate Limiting*: Set a limit on the number of requests made to the API within a certain time frame. Use libraries like `rate-limiter-flexible` or `limiter` to achieve this.
-   
-2. *slow-down*: slows down responses rather than blocking them outright. Use to slow repeated requests to public APIs and/or endpoints such as password reset. Use libraries like 'express-slow-down' to achieve this.
-
-        ex for above both library : https://blog.appsignal.com/2024/04/03/how-to-implement-rate-limiting-in-express-for-nodejs.html
+To prevent Node.js from continuously hitting an API, you can implement the following strategies:
  
-3. *Caching*: Cache API responses in memory or a database to reduce the number of requests made. Use libraries like `node-cache` or `redis`.
+1. *Rate Limiting*: 
+               Set a limit on the number of requests made to the API within a certain time frame. Use libraries like `rate-limiter-flexible` or `limiter` to achieve this. **or**
+               Slows down responses rather than blocking them outright. Use to slow repeated requests to public APIs and/or endpoints such as password reset. Use libraries like 'express-slow-down' to achieve this.
  
-5. *Debouncing*: Group multiple requests into a single request using debouncing techniques. Use libraries like `lodash.debounce` or `debounce`.
+2. *Caching*: Cache API responses in memory or a database to reduce the number of requests made. Use libraries like `node-cache` or `redis`.
  
-6. *Throttling*: Limit the number of requests made within a certain time frame. Use libraries like `throttle-debounce` or `p-throttle`.
+3. *Debouncing*: Group multiple requests into a single request using debouncing techniques. Use libraries like `lodash.debounce` or `debounce`.
  
-7. *Exponential Backoff*: Gradually increase the delay between requests after each failure. Use libraries like `backoff` or `retry-axios`.
+4. *Throttling*: Limit the number of requests made within a certain time frame. Use libraries like `throttle-debounce` or `p-throttle`.
  
-8. *Circuit Breaker Pattern*: Temporarily stop making requests when the API is down or responding with errors. Use libraries like `opossum` or `circuit-breaker-js`.
+5. *Exponential Backoff*: Gradually increase the delay between requests after each failure. Use libraries like `backoff` or `retry-axios`.
  
-9. *API Keys or Tokens*: Use API keys or tokens to authenticate and limit requests. Check with the API provider for their usage guidelines.
+6. *Circuit Breaker Pattern*: Temporarily stop making requests when the API is down or responding with errors. Use libraries like `opossum` or `circuit-breaker-js`.
  
-10. *Request Queueing*: Queue requests and process them in batches to reduce the load on the API.
+7. *API Keys or Tokens*: Use API keys or tokens to authenticate and limit requests. Check with the API provider for their usage guidelines.
  
-11. *Monitor API Usage*: Keep an eye on API usage metrics to detect and prevent excessive requests.
+8. *Request Queueing*: Queue requests and process them in batches to reduce the load on the API.
  
-12. *Implement API Provider Guidelines*: Follow the guidelines and limits set by the API provider to avoid abuse and termination of service.
+9. *Monitor API Usage*: Keep an eye on API usage metrics to detect and prevent excessive requests.
+ 
+10. *Implement API Provider Guidelines*: Follow the guidelines and limits set by the API provider to avoid abuse and termination of service.
  
 By implementing these strategies, you can prevent Node.js from continuously hitting an API and ensure a more reliable and efficient application.
+ 
+
+---
+
+## Rate limiting
+https://blog.appsignal.com/2024/04/03/how-to-implement-rate-limiting-in-express-for-nodejs.html
+
+Rate limiting is a fundamental mechanism for controlling the number of requests a client can make to a server in a given time frame
+
+Rate limiting is a strategy for limiting network traffic by placing a cap on how often an actor can call the same API in a given time frame. That's essential for controlling the volume of requests a client can make to a server in a certain amount of time.
+
+To better understand how this mechanism works, consider a scenario where you have a Node.js backend that exposes some public endpoints. Suppose a malicious user targets your server and writes a simple script to overload it with automated requests. The performance of your server will downgrade as a result, hindering the experience of all other users. In an extreme situation, your server may even go offline. By limiting the number of requests the same IP can make in a given time frame, you can avoid all that!
+
+Specifically, there are two approaches to rate limiting:
+
+**Blocking incoming requests:** When a client exceeds the defined limits, deny its additional requests.
+
+**Slowing down requests:** Introduce a delay for requests beyond the limits, making the caller wait longer and longer for a response.
+
+controlling the rate at which requests are processed helps enforce usage limits, prevents server overloads, and safeguards against malicious attacks.
+
+### Blocking incoming requests
+
+```
+const express = require("express");
+
+const port = 3000;
+
+// initialize an Express server
+const app = express();
+
+// define a sample endpoint
+app.get("/hello-world", (req, res) => {
+  res.send("Hello, World!");
+});
+
+// start the server
+app.listen(port, () => {
+  console.log(`Server listening at http://hostname:${port}`);
+});
+
+```
+
+ How to integrate rate limiting behavior into a Node.js application using the following libraries:
+
+**express-rate-limit:** To block requests that exceed specified limits.
+
+**express-slow-down:** To slow down similar requests coming from the same actor.
+
+```
+
+const rateLimit = require('express-rate-limit');
+
+const limiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  limit: 10, // maximum number of requests allowed in the windowMs
+  message: 'Too many requests, please try again later.',
+});
+
+// option 1 : Register the limiter middleware to all endpoints with:
+
+   app.use(limiter);
+
+// option 2 : If you instead want to rate limit APIs under a specific path, use the limiter middleware as below:
+
+   app.use("/public", limiter);
+
+// option 3 : To protect only a certain endpoint, pass limiter as a parameter in the endpoint definition:
+
+   app.get("/hello-world", limiter, (req, res) => {
+     // ...
+   });
+
+```
+
+Testing Rate Limiting
+
+Open the postman and test it.
+On the eleventh API call within a 1-minute time frame, the request will fail, with the error: “Too many requests, please try again later.”
+
+
+### Slowing Down Requests With express-slow-down
+
+```
+const { rateLimit } = require("express-slow-down");
+
+const limiter = slowDown({
+  windowMs: 15 * 60 * 1000, // 5 minutes
+  delayAfter: 10, // allow 10 requests per `windowMs` (5 minutes) without slowing them down
+  delayMs: (hits) => hits * 200, // add 200 ms of delay to every request after the 10th
+  maxDelayMs: 5000, // max global delay of 5 seconds
+});
+
+app.use(limiter);       // or other option which mentioned in above example
+
+```
 
 ---
 
 ## Debounce and Throttling
+https://medium.com/@bs903944/debounce-and-throttling-what-they-are-and-when-to-use-them-eadd272fe0be
 
 If you are a web developer, you might have encountered situations where you need to optimize the performance of your code that runs repeatedly within a short period of time. For example, you might have a search bar that fetches suggestions from the backend as the user types, or a resize event handler that adjusts the layout of your page. In these cases, you don’t want to execute your code too often, as it might cause unnecessary network requests, a laggy user interface, or high CPU usage.
 
