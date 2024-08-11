@@ -176,9 +176,12 @@ incidents are also essential for keeping the API secure.
 [Back to Top](#nodeJSIndex)
 
 ---
-``` diff
+
 ## <a id="architectureIndex"> Architecture And Event Loop Phases </a>
+**imp : https://compile7.org/decompile/how-event-loop-works-in-nodejs/**
+
 Q. [NodeJs Architecture](https://www.digitalocean.com/community/tutorials/node-js-architecture-single-threaded-event-loop)
+``` diff
 
 + Node JS Platform
     Node JS Platform uses “Single Threaded Event Loop” architecture to handle multiple concurrent clients. 
