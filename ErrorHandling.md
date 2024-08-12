@@ -60,11 +60,24 @@ Once an exception is unhandled, Node.js shuts down your program immediately.
 But with error handling, you have the option to decide what happens and handle errors gracefully.
 Node.js provides multiple mechanisms to handle errors.
 
+In Node.js, errors can be handled using a variety of techniques, including try…catch blocks, error-first callbacks, and the use of error event emitters.
+
 1. Try Catch
+     ```
+     try {
+        // Code that may throw an error
+        const result = someFunction();
+        console.log(result);
+      } catch (error) {
+        console.error('An error occurred:', error);
+      }
+     
+     ```
 
 2. Error-First Callback Error Handling
     if the callback operation completes and an exception is raised,
     the callback's first argument is an Error object. Otherwise, the first argument is null, indicating no error.
+   
 ```
 const fs = require("fs");
 fs.open("somefile.txt", "r+", (err, fd) => {
@@ -115,12 +128,13 @@ doSomeThingAsync()
 
 **4. Event Emitters**
 
-EventEmitter is another style of error handling used commonly in an event-based API. 
-This is useful in continuous or long-running asynchronous operations where a series of errors can happen. 
+const myEmitter = new MyEmitter();
 
-Here's an example: file read operation in stream (refer stream topic)
+myEmitter.on('error', (err) => {
+  console.error('An error occurred:', err);
+});
 
-  .on('error', 'message')
+myEmitter.emit('error', new Error('Oops! Something went wrong.'));
 
 ---
 
