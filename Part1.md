@@ -424,6 +424,28 @@ fs.rename('mynewfile1.txt', 'myrenamedfile.txt', function (err) {
 });
 
 ```
+---
+
+What is Buffer in NodeJS?
+Buffer is a temporary memory, mainly used by the stream to hold some data until consumed. Buffer is mainly used to store binary data while reading from a file or receiving packets over the network.
+
+It represents a fixed-length sequence of bytes. It allocated memory outside of the V8 heap. (Buffer not available in browser’s JavaScript)
+
+A simple example of converting a string into a buffer:
+
+// a string
+const str = "Hey. this is a string!";
+// convert string to Buffer
+const buff = Buffer.from(str, "utf-8");
+console.log(buff); // <Buffer 48 65 79 2e ... 72 69 6e 67 21>
+To convert buffer into a string:
+
+// if the buffers contain text
+buffer.toString(encoding) // encoding = 'utf-8'
+// if you know how many bytes the buffer contains then
+buffer.toString(encoding, 0, numberOfBytes) // numberOfBytes = 12
+
+---
 
 ``` diff
 
