@@ -1,3 +1,31 @@
+
+### How to resolve unhandled exceptions in node?
+
+In Node.js, unhandled exceptions can be resolved using the process.on(‘uncaughtException’) event. By attaching a listener to this event, you can catch unhandled exceptions and prevent Node.js from terminating.
+
+```
+process.on('uncaughtException', (err) => {
+  console.error('An unhandled exception occurred:', err);
+  // Perform cleanup, logging, or any necessary action
+  // Avoid attempting to continue with the application as it may be in an inconsistent state
+  // Gracefully shut down the application
+  **process.exit(1);** // Exit the process with a failure code (1)
+});
+
+// Example of an unhandled exception (for demonstration purposes)
+// This code will throw an unhandled exception
+setTimeout(() => {
+  throw new Error('Intentional unhandled exception');
+}, 100);
+```
+
+
+// Other application logic
+// ...
+When an unhandled exception occurs, the provided callback function is executed, allowing you to log the error, perform any necessary cleanup, and gracefully shut down the application using process.exit(1).
+
+---
+
 **Q6. Error Handling in nodeJS**
 
 https://medium.com/@arunchaitanya/understanding-normal-middleware-and-error-handling-middleware-in-express-js-d3ecbd9b9849
