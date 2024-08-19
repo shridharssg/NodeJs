@@ -26,15 +26,8 @@ When an unhandled exception occurs, the provided callback function is executed, 
 
 ---
 
-**Q6. Error Handling in nodeJS**
+### Error Handling in nodeJS**
 
-https://medium.com/@arunchaitanya/understanding-normal-middleware-and-error-handling-middleware-in-express-js-d3ecbd9b9849
-
-https://blog.appsignal.com/2022/11/16/nodejs-error-handling-tips-and-tricks.html
-
-https://medium.com/backenders-club/error-handling-in-node-js-ef5cbfa59992
-
----
 
 Error handling a mandatory step in application development.
 
