@@ -25,18 +25,6 @@ Q. [Data Stream](#dataIndex)
 Q. [Clutser](#cluster)
 
 ---
-
-## <a id="cluster"> Cluster </a>
-
-https://job.js.org/questions/nodejs/nodejs-clustering/
-
-[Cluster](https://blog.appsignal.com/2021/02/03/improving-node-application-performance-with-clustering.html)
-link : https://blog.appsignal.com/2021/02/03/improving-node-application-performance-with-clustering.html
-
-other link : https://www.digitalocean.com/community/tutorials/how-to-scale-node-js-applications-with-clustering
-
----
-
 ## <a id="promisesIndex"> Promises </a>
 Q. [Promise](https://dotnettutorials.net/lesson/javascript-promise/)
 Q. [Promise Chaining](https://dotnettutorials.net/lesson/promise-chaining-in-javascript/)
@@ -114,11 +102,6 @@ const normalMiddleware = (req, res, next) => {
   next(); // Pass control to the next middleware or route handler
 };
 ```
-
----
-## <a id="microIndex"> Microservices </a>
-Q. [How to create a microservices in Node.js](https://www.turing.com/kb/how-to-build-microservices-with-node-js)
-
 ---
 
 ## <a id="securityIndex"> Secure Rest API </a>
@@ -177,82 +160,6 @@ the most recent security patches. Regular security testing and having a plan in 
 incidents are also essential for keeping the API secure.
 ```
 [Back to Top](#nodeJSIndex)
-
----
-
-## <a id="architectureIndex"> Architecture And Event Loop Phases </a>
-**imp : https://compile7.org/decompile/how-event-loop-works-in-nodejs/**
-
-Q. [NodeJs Architecture](https://www.digitalocean.com/community/tutorials/node-js-architecture-single-threaded-event-loop)
-``` diff
-
-+ Node JS Platform
-    Node JS Platform uses “Single Threaded Event Loop” architecture to handle multiple concurrent clients. 
-    Then how it really handles concurrent client requests without using multiple threads.
-    What is Event Loop model? We will discuss these concepts one by one. 
-    Before discussing “Single Threaded Event Loop” architecture,
-    first we will go through famous “Multi-Threaded Request-Response” architecture.
-
-+ Traditional Web Application 
-Any Web Application developed without Node JS, typically follows “Multi-Threaded Request-Response” model. 
-
-Steps:
-     •	Web Server internally maintains a Limited Thread pool to provide services to the Client Requests.
-     •	Clients Send request to Web Server.
-     •	When Client send requests, Web Server receives those requests. 
-     •	Web Server pickup one Client Request
-     •	Pickup one Thread from Thread pool
-     •	Assign this Thread to Client Request
-     •	This Thread will take care of reading Client request, processing Client request,
-       performing any Blocking IO Operations (if required) and preparing Response
-     •	This Thread sends prepared response back to the Web Server
-     •	Web Server sends this response to the respective Client.
-
-Here, Server waits for client request and performs all sub-steps as mentioned above for all n clients. 
-That means this model creates one Thread per Client request. If more clients requests require Blocking IO Operations,
-then almost all threads are busy in preparing their responses. Then remaining clients Requests should wait for longer time.
-
-+ Drawbacks
-     •	Handling more and more client’s request is bit tough.
-     •	When client requests increases, then Sometimes, Client’s Request should wait for available threads to process their requests.
-     •	Wastes time in processing Blocking IO Tasks.
-
-- Node JS Architecture - Single Threaded Event Loop
-
-    Node JS Platform does not follow above Multi-Threaded Model. 
-    It follows Single Threaded with Event Loop Model.
-    Node JS Processing model mainly based on Javascript Event based model with Javascript callback mechanism
-
-    + Single Threaded Event Loop Model Processing Steps:
-    
-    •	Clients Send request to Web Server.
-    •	Node JS Web Server internally maintains a Limited Thread pool to provide services to the Client Requests.
-    •	Node JS Web Server receives those requests and places them into a Queue. It is known as “Event Queue”.
-    •	Node JS Web Server internally has a Component, known as “Event Loop”. 
-    •	Event Loop uses Single Thread only. 
-    •	Even Loop checks any Client Request is placed in Event Queue. If no, then wait for incoming requests
-    •	If yes, then pick up one Client Request from Event Queue
-    •	Starts process that Client Request
-    •	If that Client Request Does Not requires any Blocking IO Operations, then process everything,
-      prepare response and send it back to client.
-    •	If that Client Request requires some Blocking IO Operations like interacting with Database, File System,
-      External Services then it will follow different approach
-    •	Checks Threads availability from Internal Thread Pool
-    •	Picks up one Thread and assign this Client Request to that thread.
-    •	That Thread is responsible for taking that request, process it, perform Blocking IO operations,
-      prepare response and send it back to the Event Loop
-    •	Event Loop in turn, sends that Response to the respective Client.
-
-Although we have Multiple Threads in the Background, Node is still said to be Single Threaded since all the Requests are
-Received on the Single Thread and Node internally manages the Execution of blocking requests  on the Background Threads.
-
-+ Single Threaded Event Loop Advantages
-    1.	Handling more and more concurrent client’s request is very easy.
-    2.	Even though our Node JS Application receives more and more Concurrent client requests, there is no need of creating more
-       and more threads, because of Event loop.
-    3.	Node JS application uses less Threads so that it can utilize only less resources or memory
-
-```
 
 ---
 
