@@ -1,20 +1,40 @@
 https://rahulvijayvergiya.hashnode.dev/event-loop-and-concurrency-in-javascript
 
 ![image](https://github.com/user-attachments/assets/c81ca729-cdce-4de7-b623-3d83475b1546)
+![image](https://github.com/user-attachments/assets/9ad1c4e0-3dd0-4481-9c73-6639a7c5fd5a)
 
 
 ### What is the Event Loop?
 
 Event loop is the heart of Node.js's asynchronous architecture. It is a mechanism that allows Node.js to perform non-blocking I/O operations, even though JavaScript is single-threaded. The event loop continuously checks the event queue to check what should be executed next, allowing Node.js to handle multiple tasks efficiently.
 
-Here's how the event loop operates: 
+Javascript is a single-threaded and non-blocking language, single-threaded means it can only do one task at a time, and non-blocking means, if there are tasks that are taking too long to complete then javascript don't block the execution of the other tasks.
+Well If you have used javascript it doesn't block the execution of the other tasks while performing an asynchronous task so how it's doing that, well it uses different tools like call stack, memory heap, web APIs, Callback queue, and event loop
 
-1. **Call Stack**: JavaScript has a call stack that keeps track of function executions. When a function is called, it’s added to the stack. When it finishes executing, it’s removed from the stack.
+**Here's how the event loop operates:**
 
-2. **Task Queue (or Message queue)**: When an asynchronous operation completes (e.g., an API call, setTimeout), its callback is placed in the task queue.
+Browsers have something called an engine that runs javascript code for you, some popular ones are v8 in chrome and Webkit in Safari. A Browser engine that runs Javascript consists of two things a heap and a call stack.
 
-3. **Event Loop**: The event loop continuously monitors the call stack and the task queue. If the call stack is empty, the event loop will push the first task from the task queue into the call stack, allowing it to be executed.
+**Heap** is the area where the memory of objects, arrays, functions, and other variables of your javascript program is stored dynamically and randomly.
 
+**Call Stack** : 
+  Call Stack is where all functions or tasks are stacked and executed in the manner of LIFO(last-in-first-out) order, when the program is running line by line and it encountered a function then the function is pushed to call stack and when the function is executed then it is popped out of call stack. but say when the program is running and encounters an asynchronous task, it is pushed to the call stack and the call stack pushes it to web APIs because the call stack only deals with the synchronous tasks so that it won't get blocked by asynchronous tasks.
+
+**Web APIs** 
+  Web APIs are part of the browser that provides us with APIs such as HTTP, AJAX, Geolocation, DOM events, fetch, setTimeout, etc, which we can call in our JavaScript code and the execution is handled by browsers itself. Now when browser web APIs have some task sent by call stack it performs the task but doesn't send back to the call stack directly but instead gives it a callback and pushes to Callback Queue (Macrotask) or Microtask Queue depending on the callback.
+
+**Callback Queue and Microtask Queue**
+  are the area where callbacks sent by web APIs are stored and are getting ready to be sent to the call stack to get executed. Callback Queue and Microtask Queue store the callbacks in a FIFO(first-in-first-out) fashion but who decides when to send them to the call stack that's where the event loop comes.
+  
+  Note : Callback Queue : callbacks related to : setTimeout callbacks, setInterval callbacks, I/O callbacks
+  Note : Microtask Queue : callbacks related to : Promise callbacks and process.nextTick callbacks
+
+  
+**Event Loop** 
+The event loop continuously monitors the call stack and Callback Queue and Microtask Queue.
+Its check if the call stack is empty or not and if there are any callback functions inside the callback queue or microtask queue and if there is then one by one event loop sends to the call stack to get executed. All the callback functions coming through Promises will go inside the Microtask Queue and callback functions coming from the setTimeout(), etc goes inside the callback queue. Microtask queue has a higher priority than callback queue so event loop priorities sending from Microtask queue first then move to the Callback queue.
+
+---
 
 **Asynchronous Operations in JavaScript**
 
@@ -26,8 +46,7 @@ JavaScript uses different types of asynchronous operations, including:
 
 **Event Listeners**: Events such as clicks, key presses, and network requests trigger asynchronous callbacks.
 
-
-Now lets understand the Macrotasks vs. Microtasks
+---
 
 ### **Macrotasks vs. Microtasks in Event loop**
 
@@ -41,6 +60,7 @@ Macrotasks include operations like setTimeout, setInterval, I/O, and event callb
 
 Microtasks, on the other hand, are primarily related to promise resolutions and MutationObserver. When a microtask is queued, it is processed after the currently executing script and before any macrotasks. This gives microtasks higher priority over macrotasks.
 
+---
 
 **How the Event Loop Handles Tasks**
 
@@ -148,7 +168,7 @@ The Node.js event loop consists of six main phases:
 
 ---
 
-### Understanding the Node.js Event Loop
+### Understanding Execution Context Before Node.js Event Loop
 
 Node.js is known for its non-blocking, asynchronous nature, which is made possible by its event-driven architecture.
 
@@ -198,26 +218,8 @@ bar() finishes, its context is popped from the stack.
 foo() finishes, its context is popped from the stack.
 
 
-**The Event Loop**
+**Conclusion** 
 
 The event loop is the core of Node.js's asynchronous capabilities. It allows Node.js to perform non-blocking I/O operations despite the fact that JavaScript is single-threaded. The event loop continuously checks the call stack and the callback queue, deciding what to execute next.
 
-**Here's how the event loop operates with asynchronous code:**
-
-1. Call Stack and Asynchronous Operations: When an asynchronous operation (like setTimeout, Promise, or I/O) is initiated, its callback is not executed immediately. Instead, the operation is handed off to the Node.js APIs, and the function's execution context is popped off the call stack.
-
-2. Callback Queue (Macrotasks): Once the asynchronous operation is complete, its callback is placed in the callback queue (also known as the macrotask queue). This queue holds tasks like setTimeout callbacks, setInterval callbacks, I/O callbacks, and more.
-
-3. Microtask Queue: In addition to the callback queue, there is a microtask queue, which holds microtasks like resolved Promise callbacks and process.nextTick callbacks. Microtasks have higher priority and are processed before the macrotasks.
-
-4. Event Loop Execution:
-
-The event loop first checks if the call stack is empty.
-
-If the call stack is empty, it processes all the microtasks in the microtask queue.
-
-After the microtask queue is empty, the event loop picks the first callback from the macrotask queue and pushes its execution context onto the call stack, executing it.
-
-This process repeats, with the event loop continuously checking the call stack and processing microtasks and macrotasks as they become available.
-
-**Conclusion** Node.js's ability to handle asynchronous operations efficiently is powered by the event loop, the call stack, and execution contexts. 
+Node.js's ability to handle asynchronous operations efficiently is powered by the event loop, the call stack, and execution contexts. 
