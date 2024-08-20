@@ -6,12 +6,10 @@ Q4. Express vs NestJs
 Q5. Routing
 Q6. Difference between app.use vs app.get vs app.all vs router.get
 Q7. app.js vs server.js
-Q8. Thread Size and Increase
 
 pending
 Q. [Rest API and HTTP Methods]
 Q. [Package.json vs Package-lock.json]
-Q. [Asynchronous and Synchronous]
 ```
 
 **Q1. What are Node.js modules?**
@@ -74,80 +72,72 @@ msg.log('Hello World');
 
 ---
 
-``` js
-
-** Q2. What are the global objects of Node.js?**
+### Q2. What are the global objects of Node.js?
   
-	Node.js Global Objects are the objects that are available in all modules.
-	Global Objects are built-in objects that are part of the JavaScript and can be used directly
-	in the application without importing any particular module.
+Node.js Global Objects are the objects that are available in all modules.
+Global Objects are built-in objects that are part of the JavaScript and can be used directly in the application without importing any particular module.
 
 These objects are modules, functions, strings and object itself as explained below.
 
-	**1. global:**
+**1.global** : It is a global namespace. Defining a variable within this namespace makes it globally accessible.
+
+	   var myvar;
 	
-		It is a global namespace. Defining a variable within this namespace makes it globally accessible.
-		var myvar;
+**2.process:**
+	It is an inbuilt global object that is an instance of EventEmitter used to get information on current process.
+	It can also be accessed using require() explicitly.
 	
-	**2. process:**
-	
-		It is an inbuilt global object that is an instance of EventEmitter used to get information on current process.
-		It can also be accessed using require() explicitly.
-	
-	**3. console:**
-	
-		It is an inbuilt global object used to print to stdout and stderr.
+**3.console:**
+	It is an inbuilt global object used to print to stdout and stderr.
 	
 		console.log("Hello World"); // Hello World
+  
 	
-	**4. setTimeout(), clearTimeout(), setInterval(), clearInterval():**
+**4.setTimeout(), clearTimeout(), setInterval(), clearInterval():**
+	```
+	The built-in timer functions are globals
 	
-		The built-in timer functions are globals
-		
-		function printHello() {
-		   console.log( "Hello, World!");
-		}
-		
-		// Now call above function after 2 seconds
-		var timeoutObj = setTimeout(printHello, 2000);
+	function printHello() {
+	   console.log( "Hello, World!");
+	}
 	
-	**5. __dirname:**
+	// Now call above function after 2 seconds
+	var timeoutObj = setTimeout(printHello, 2000);
+	```
 	
-		It is a string. It specifies the name of the directory that currently contains the code.
+**5.__dirname:**
+	It is a string. It specifies the name of the directory that currently contains the code.
 	
 		console.log(__dirname);
 	
-	**6. __filename:**
-	
-		It specifies the filename of the code being executed.
-		This is the resolved absolute path of this code file.
-		The value inside a module is the path to that module file.
-	
-		console.log(__filename);
-```
+**6.__filename:**
+	It specifies the filename of the code being executed.
+	This is the resolved absolute path of this code file.
+	The value inside a module is the path to that module file.
 
+	console.log(__filename);
 ---
 
 **Q3. How to create a simple server in Node.js that returns Hello World?**
 
-``` js
-	/**
-	 * Express.js
-	 */
-	const express = require('express');
-	const app = express();
-	
-	app.get('/', function (req, res) {
-	  res.send('Hello World!');
-	});
-	
-	app.listen(3000, function () {
-	  console.log('App listening on port 3000!');
-	});
 ```
----
+/**
+ * Express.js
+ */
+const express = require('express');
+const app = express();
+
+app.get('/', function (req, res) {
+  res.send('Hello World!');
+});
+
+app.listen(3000, function () {
+  console.log('App listening on port 3000!');
+});
+```
 
 ---
+
 ## <a id="expressNestJsIndex"> Express vs NestJs </a>
 Q4. [Express & NestJs Comparison](https://medium.com/@karahanozen/express-js-vs-nest-js-2e39fc0ce22c)
 
@@ -400,13 +390,4 @@ Separating app.js and server.js not only draws a clean separation of concerns bu
 Finally, separating app.js and server.js can improve the application's scalability. By breaking up the code into smaller modules,
 it becomes easier to add new features or modify existing ones without having to touch the entire application codebase.
 
----
-
-**Q. Thread Size and Increase**
-
-4 threads
-
-By default, libuv uses a thread pool with 4 threads, but this number can be changed by setting the UV_THREADPOOL_SIZE environment variable. This means that you can increase or decrease the number of threads in the thread pool depending on the requirements of your application.
-
-we are allowed to change the default value of 4 threads to anything up to 1024 threads. We achieve this by setting the UV_THREADPOOL_SIZE Node variable.
 ---
