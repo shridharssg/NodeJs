@@ -1,4 +1,3 @@
-https://rahulvijayvergiya.hashnode.dev/event-loop-and-concurrency-in-javascript
 
 ![image](https://github.com/user-attachments/assets/c81ca729-cdce-4de7-b623-3d83475b1546)
 ![image](https://github.com/user-attachments/assets/9ad1c4e0-3dd0-4481-9c73-6639a7c5fd5a)
