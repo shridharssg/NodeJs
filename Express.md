@@ -385,6 +385,12 @@ This approach separates the server configuration from the application's function
 
 Separating app.js and server.js not only draws a clean separation of concerns but also significantly easy for mocking and testing the system by testing the API in-process, without performing network calls
 
+---
+
+why app.js vs server.js is seperate
+
+https://dev.to/superiqbal7/separating-app-and-server-in-express-why-it-matters-and-how-it-benefits-your-application-149d
+
 **Improved scalability**
 
 Finally, separating app.js and server.js can improve the application's scalability. By breaking up the code into smaller modules,
