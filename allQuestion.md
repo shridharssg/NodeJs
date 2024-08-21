@@ -1,3 +1,97 @@
+Difference between package.json and package.lock.json files?
+
+5. Difference between the Asynchronous and non-blocking code?
+
+6. Difference between pipe and chaining in a node?
+
+7. What is the control flow function?
+
+8. What is Buffer in Nodejs?
+
+9. What is Stream and different types of stream in nodejs?
+
+10. What are processes and threads and How do they communicate between multiple threads and processes?
+
+11. Difference between put, post, and patch methods?
+
+12. What is the use of module.export ?
+
+13. What is the node process model?
+
+14. What is CORS?
+
+15. Difference between crypto and bcrypt module?
+
+16. Difference between NPM, YARN, and NPX?
+
+17. What is LTS release?
+
+18. Difference between req.params and req.query?
+
+19. Difference between dependency and dev-dependency?
+
+20. What is the error first callback function?
+
+21. Difference between Authentication and Authorization?
+
+Level-2: Intermediate
+22. How to handle errors in node?
+
+23. How to resolve unhandled exceptions in node?
+
+24. What is cron job?
+
+25. What difference between fork and spawn and exec methods?
+
+26. What are the global objects of Node.js?
+
+27. What are the different phases of the event loop?
+
+28. What are Reactor Pattern and Demultiplexer in Node?
+
+29. How to handle large file upload on node server? What is highWaterMark ?
+
+30. What is middleware and different types of middleware?
+
+31. Difference between readFile and createReadStream ?
+
+32. Difference between Hashing and Encryption?
+
+33. What is the use of NodeJS binding?
+
+34. Difference between Cluster and child_process modules?
+
+35. How to read write and compress a file in node?
+
+36. Difference between Async.Await and Async.Series ?
+
+37. How to achieve localization in node?
+
+38. Difference between Promises and Observables?
+
+39. How to achieve server-side validation in node application?
+
+40. Difference between Emitter and Dispatcher?
+
+Level-3: Expert
+41. How to perform a load test of the node app?
+
+42. What are the different types of memory leaks?
+
+43. How you can achieve caching in node application?
+
+44. How can you improve the performance of the node applications?
+
+45. What are the security best practices for node applications?
+
+46. How we can scale nodejs application?
+
+47. How to prevent DOS and DDOS attacks in node applications?
+
+48. How to avoid SQL Injection attacks in node applications?
+
+49. How to write test cases for the backend?
+
 ### package.json and package.lock.json files?
 
 In a Node.js project, the package.json file is mandatory, while the package-lock.json file is not mandatory but highly recommended for projects using npm for package management.
