@@ -1,4 +1,5 @@
-## To prevent Node.js from continuously hitting an API or malacious attack, you can implement the following strategies:
+### To prevent Node.js from continuously hitting an API or malacious attack, you can implement the following strategies:
+### Or How to increase application performance
 
 To prevent Node.js from continuously hitting an API, you can implement the following strategies:
  
