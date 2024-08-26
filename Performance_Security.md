@@ -8,6 +8,7 @@ Q. Remove unused libraries or modules in a Node.js application
 
 Q. ACL - Access Control List -  role-based access control
 
+Q. Handle failed request i: API is down, but the client is still making requests to it
 
 ---
 ---
@@ -377,3 +378,63 @@ app.listen(3000, () => {
   console.log('Server listening on port 3000');
 });
 ```
+---
+
+### To handle a scenario where a single API is down, but the client is still making requests to it, you can implement the following strategies in Node.js:
+ 
+1. *Circuit Breaker Pattern*: Use a library like `opossum` or `circuit-breaker-js` to detect when the API is down and prevent further requests until it's back up.
+2. *Retry Mechanism*: Implement a retry mechanism using a library like `retry-axios` or `p-retry` to retry the request after a certain amount of time.
+3. *Fallback API*: Provide a fallback API or a default response when the primary API is down.
+4. *Load Balancing*: Use load balancing to distribute traffic across multiple instances of the API, so if one instance is down, the other instances can handle the requests.
+5. *Monitoring and Alerting*: Monitor the API's health and set up alerts to notify the development team when the API is down.
+6. *Graceful Degradation*: Design the system to degrade gracefully, so even if the API is down, the system can still function, albeit with reduced functionality.
+
+Let's consider an example of a Node.js application that handles a user's GET request to retrieve their profile information. We'll use the `express` framework to handle the request and `axios` to make an API request to an external service.
+ 
+**_Without Retry Mechanism_**
+
+```
+const express = require('express');
+const axios = require('axios');
+ 
+const app = express();
+ 
+app.get('/user/profile', async (req, res) => {
+  try {
+    const response = await axios.get('(link unavailable)');
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to retrieve profile information' });
+  }
+});
+```
+In this example, if the API request to the external service fails (e.g., due to a network error or the external service being down), the application will return a 500 error response to the user.
+ 
+**_With Retry Mechanism using `p-retry`_**
+```
+const express = require('express');
+const axios = require('axios');
+const pRetry = require('p-retry');
+ 
+const app = express();
+ 
+app.get('/user/profile', async (req, res) => {
+  try {
+    const response = await pRetry(() => axios.get('(link unavailable)'), {
+      retries: 3,
+      minTimeout: 1000,
+      maxTimeout: 5000,
+    });
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to retrieve profile information' });
+  }
+});
+```
+
+In this example, we've wrapped the `axios.get` request in a `pRetry` function. If the request fails, `pRetry` will automatically retry the request up to 3 times, with a minimum timeout of 1 second and a maximum timeout of 5 seconds. If all retries fail, the application will return a 500 error response to the user.
+ 
+By using a retry mechanism, we can make our application more resilient to temporary failures and improve the overall user experience. If the external service is temporarily down, our application will retry the request and potentially succeed on a subsequent attempt, rather than immediately returning an error to the user.
+
+---
+
