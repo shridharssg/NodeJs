@@ -10,7 +10,7 @@ Q. ACL - Access Control List -  role-based access control
 
 Q. Handle failed request i: API is down, but the client is still making requests to it
 
-Q. Axios
+Q. Axios vs fetch vs httpClient
 
 ---
 ---
@@ -465,6 +465,7 @@ Overall, Axios provides a convenient, flexible, and powerful way to make HTTP re
 Here's an example of using Axios to make a GET request to a JSON API:
  
 ```
+in backendd
 const axios = require('axios');
  
 async function fetchUserData() {
@@ -486,12 +487,6 @@ In this example:
 - We await the response and log the data to the console.
 - If an error occurs, we catch it and log the error to the console.
  
-Axios takes care of:
- 
-- Making the HTTP request
-- Handling the response data (in this case, JSON)
-- Providing error handling
- 
 This is a simple example, but Axios can handle more complex scenarios, such as:
  
 - Posting data to an API
@@ -501,31 +496,237 @@ This is a simple example, but Axios can handle more complex scenarios, such as:
  
 **Axios can be used in both Angular and Node.js.**
  
-*In Angular:*
+*In Angular:* Axios is used as a client-side HTTP client to make requests to servers. 
  
-Axios is used as a client-side HTTP client to make requests to servers. It's often used to:
- 
-- Fetch data from APIs
-- Send data to servers
-- Handle authentication and authorization
- 
-In Angular, Axios is typically used in services or components to make HTTP requests.
- 
-*In Node.js:*
- 
-Axios is used as a server-side HTTP client to make requests to other servers or APIs. It's often used to:
- 
-- Make requests to external APIs
-- Handle server-side authentication and authorization
-- Fetch data from other services
- 
-In Node.js, Axios is typically used in server-side code, such as in Express.js routes or middleware.
- 
-*Key differences:*
- 
-- In Angular, Axios is used in the browser, whereas in Node.js, it's used in the server environment.
-- In Angular, Axios is often used to handle client-side errors, whereas in Node.js, it's used to handle server-side errors.
+*In Node.js:* Axios is used as a server-side HTTP client to make requests to other servers or APIs. It's often used to:
+              In Node.js, Axios is typically used in server-side code, such as in Express.js routes or middleware.
  
 In summary, Axios can be used in both Angular and Node.js to make HTTP requests, but the context and usage differ between the two environments
 
+```
+import axios from 'axios';
+ 
+// Make a GET request
+axios.get('(link unavailable)')
+  .then(response => {
+    console.log(response.data);
+  })
+  .catch(error => {
+    console.error(error);
+  });
+ 
+// Make a POST request
+axios.post('(link unavailable)', {
+  name: 'John Doe',
+  age: 30
+})
+  .then(response => {
+    console.log(response.data);
+  })
+  .catch(error => {
+    console.error(error);
+  });
+ 
+// Make a DELETE request
+axios.delete('(link unavailable)')
+  .then(response => {
+    console.log(response.data);
+  })
+  .catch(error => {
+    console.error(error);
+  });
+```
+ 
+**Example with async/await**
+ 
+```
+import axios from 'axios';
+ 
+async function fetchData() {
+  try {
+    const response = await axios.get('(link unavailable)');
+    console.log(response.data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+ 
+fetchData();
+```
+
 ---
+
+Fetch and Axios are two popular libraries used for making HTTP requests in JavaScript. Here's a brief comparison:
+ 
+Fetch:
+ 
+1. Built-in browser API (no need for external libraries)
+2. Returns Promises
+3. Supports modern JavaScript features like async/await
+4. Simple and concise syntax
+5. Supports CORS (Cross-Origin Resource Sharing)
+6. used only in angualr frontend side
+ 
+Axios:
+ 
+1. External library (needs to be installed via npm or CDN)
+2. Returns Promises
+3. Supports modern JavaScript features like async/await
+4. More features and options compared to Fetch (e.g., interceptors, cancel tokens)
+5. Supports CORS (Cross-Origin Resource Sharing)
+6. Can be used in Node.js environment (not just browser)
+ 
+Key differences:
+ 
+1. Fetch is a built-in API, while Axios is an external library.
+2. Axios provides more features and options, making it a better choice for complex requests.
+3. Fetch has a simpler syntax, making it a better choice for simple requests.
+ 
+Choose Fetch when:
+ 
+- You need a simple, built-in solution for making HTTP requests.
+- You're working in a browser environment.
+ 
+Choose Axios when:
+ 
+- You need more features and options for complex requests.
+- You're working in a Node.js environment or need more flexibility.
+
+Here are some limitations of the Fetch API:
+ 
+1. No support for canceling requests: Once a request is sent, it can't be canceled.
+2. No support for timeouts: Fetch doesn't allow setting a timeout for requests.
+3. Limited support for file uploads: Fetch doesn't support uploading files with additional data.
+4. No support for progress tracking: Fetch doesn't provide a way to track upload or download progress.
+5. Limited support for HTTP/2: Fetch doesn't fully support HTTP/2 features like multiplexing.
+6. No built-in support for JSON data: Fetch returns raw responses, requiring manual JSON parsing.
+7. Limited support for error handling: Fetch only returns a rejected Promise for network errors, not for HTTP errors.
+8. No support for interceptors: Fetch doesn't allow modifying requests or responses globally.
+9. Limited support for CORS: Fetch has limited control over CORS headers and behavior.
+10. No support for Node.js environment: Fetch is primarily designed for browser use, not Node.js.
+
+---
+
+### httpClient
+
+In Angular, you can use the HttpClient module to make HTTP requests. Here's an example:
+
+```
+import { HttpClient } from '@angular/common/http';
+
+constructor(private http: HttpClient) { }    //_Inject HttpClient_
+
+this.http.get('(link unavailable)')    //_Make a GET request_
+  .subscribe(response => {
+    console.log(response);
+  });
+
+
+//_Make a POST request_
+const data = { name: 'John Doe', age: 30 };
+
+this.http.post('(link unavailable)', data)
+  .subscribe(response => {
+    console.log(response);
+  });
+
+
+//_Make a DELETE request_
+
+this.http.delete('(link unavailable)')
+
+  .subscribe(response => {
+
+    console.log(response);
+
+  });
+
+```
+You can also use the `async/await` syntax with HttpClient:
+
+```
+async fetchData() {
+  try {
+    const response = await this.http.get('(link unavailable)').toPromise();
+    console.log(response);
+  } catch (error) {
+    console.error(error);
+  }
+}
+```
+
+Remember to import the HttpClientModule in your app module:
+```
+import { HttpClientModule } from '@angular/common/http';
+@NgModule({
+  imports: [HttpClientModule],
+})
+
+export class AppModule { }
+
+```
+This is a basic example of using the HttpClient in Angular. You can find more information in the official Angular documentation.
+
+---
+
+### HttpClient and Axios are both popular choices for making HTTP requests in Angular applications. Here's a comparison:
+
+***HttpClient***
+
+1. Built-in Angular module
+
+2. Tree-shakeable (removes unused code)
+
+3. Supports Angular's dependency injection system
+
+4. Provides observables for handling responses
+
+5. Supports HTTP/2 and WebSocket protocols
+
+6. Automatic JSON parsing and serialization
+
+7. Interceptors for global request and response handling
+
+***Axios***
+
+1. External library (requires installation)
+
+2. Larger bundle size compared to HttpClient
+
+3. Supports promise-based and async/await syntax
+
+4. Provides more features (cancel requests, timeouts, etc.)
+
+5. Wider browser support (including older browsers)
+
+6. Automatic JSON parsing and serialization
+
+7. Interceptors for global request and response handling
+
+*Key differences*
+
+1. Bundle size: HttpClient is tree-shakeable, making it a better choice for smaller bundle sizes.
+
+2. Syntax: HttpClient uses observables, while Axios uses promises.
+
+3. Features: Axios provides more features, such as canceling requests and timeouts.
+
+4. Browser support: Axios supports older browsers, while HttpClient is optimized for modern browsers.
+
+***Choose HttpClient when***
+
+1. You're building a new Angular application and want a lightweight solution.
+
+2. You prefer observables for handling responses.
+
+3. You need to take advantage of Angular's dependency injection system.
+
+***Choose Axios when***
+
+1. You need more advanced features, such as canceling requests or timeouts.
+
+2. You prefer promise-based syntax.
+
+3. You need to support older browsers.
+
+Ultimately, the choice between HttpClient and Axios depends on your project's specific needs and your personal preference.
