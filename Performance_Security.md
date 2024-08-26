@@ -7,23 +7,23 @@ To prevent Node.js from continuously hitting an API, you can implement the follo
                Set a limit on the number of requests made to the API within a certain time frame. Use libraries like `rate-limiter-flexible` or `limiter` to achieve this. **or**
                Slows down responses rather than blocking them outright. Use to slow repeated requests to public APIs and/or endpoints such as password reset. Use libraries like 'express-slow-down' to achieve this.
  
-2. *Caching*: Cache API responses in memory or a database to reduce the number of requests made. Use libraries like `node-cache` or `redis`.
+2. **Caching**: Cache API responses in memory or a database to reduce the number of requests made. Use libraries like `node-cache` or `redis`.
  
-3. *Debouncing*: Group multiple requests into a single request using debouncing techniques. Use libraries like `lodash.debounce` or `debounce`.
+3. **Debouncing**: Group multiple requests into a single request using debouncing techniques. Use libraries like `lodash.debounce` or `debounce`.
  
-4. *Throttling*: Limit the number of requests made within a certain time frame. Use libraries like `throttle-debounce` or `p-throttle`.
+4. **Throttling**: Limit the number of requests made within a certain time frame. Use libraries like `throttle-debounce` or `p-throttle`.
  
-5. *Exponential Backoff*: Gradually increase the delay between requests after each failure. Use libraries like `backoff` or `retry-axios`.
+5. ***Exponential Backoff***: Gradually increase the delay between requests after each failure. Use libraries like `backoff` or `retry-axios`.
  
-6. *Circuit Breaker Pattern*: Temporarily stop making requests when the API is down or responding with errors. Use libraries like `opossum` or `circuit-breaker-js`.
+6. ***Circuit Breaker Pattern***: Temporarily stop making requests when the API is down or responding with errors. Use libraries like `opossum` or `circuit-breaker-js`.
  
-7. *API Keys or Tokens*: Use API keys or tokens to authenticate and limit requests. Check with the API provider for their usage guidelines.
+7. ***API Keys or Tokens***: Use API keys or tokens to authenticate and limit requests. Check with the API provider for their usage guidelines.
  
-8. *Request Queueing*: Queue requests and process them in batches to reduce the load on the API.
+8. ***Request Queueing***: Queue requests and process them in batches to reduce the load on the API.
  
-9. *Monitor API Usage*: Keep an eye on API usage metrics to detect and prevent excessive requests.
+9. ***Monitor API Usage***: Keep an eye on API usage metrics to detect and prevent excessive requests.
  
-10. *Implement API Provider Guidelines*: Follow the guidelines and limits set by the API provider to avoid abuse and termination of service.
+10. ***Implement API Provider Guidelines***: Follow the guidelines and limits set by the API provider to avoid abuse and termination of service.
  
 By implementing these strategies, you can prevent Node.js from continuously hitting an API and ensure a more reliable and efficient application.
  
@@ -224,3 +224,142 @@ The main difference between debouncing and throttling is that debouncing execute
 Debouncing is useful when you want to delay the execution of your code until the user stops performing a certain action. For example, you can use debouncing for autocomplete, where you want to wait for the user to stop typing before fetching suggestions from the backend. Debouncing can reduce the number of times your code is executed, but it can also introduce some latency in your user interface.
 
 Throttling is useful when you want to limit the execution of your code to a certain frequency. For example, you can use throttling for resize, where you want to update the layout of your page at a fixed rate. Throttling can improve the responsiveness of your user interface, but it can also cause some loss of information or accuracy in your code.
+
+---
+
+## How to remove unused libraries or modules in a Node.js application, 
+
+follow these steps:
+ 
+1. *Identify unused dependencies*:
+    - Use tools like `depcheck` or `unused-deps` to scan your project and identify unused dependencies.
+    - Run `depcheck` or `unused-deps` in your terminal/command prompt to get a list of unused dependencies.
+2. *Remove unused dependencies from `package.json`*:
+    - Open your `package.json` file and remove the unused dependencies from the `dependencies` or `devDependencies` section.
+3. *Remove unused modules from your code*:
+    - Search for `require` or `import` statements in your code that reference the unused modules.
+    - Remove or comment out these statements to prevent the modules from being loaded.
+4. *Run `npm prune` or `yarn prune`*:
+    - Run `npm prune` or `yarn prune` to remove unused dependencies from your `node_modules` directory.
+5. *Verify and test*:
+    - Verify that your application still works as expected after removing unused dependencies.
+    - Run tests to ensure that removing unused dependencies didn't break any functionality.
+ 
+Some popular tools to help you identify and remove unused dependencies include:
+ 
+- `depcheck`: A command-line tool to check for unused dependencies.
+- `unused-deps`: A tool to identify unused dependencies in your project.
+- `npm-unused`: A tool to identify and remove unused dependencies.
+- `yarn unused`: A command to identify unused dependencies in your project.
+
+```
+npm install depcheck
+
+for run 
+depcheck /path/to/my/project
+
+output :
+
+Unused dependencies
+* underscore
+Unused devDependencies
+* jasmine
+Missing dependencies
+* lodash
+
+```
+The **dependency underscore** is declared in the package.json file, but not used by any code.
+The **devDependency jasmine** is declared in the package.json file, but not used by any code.
+The **dependency lodash** is used somewhere in the code, but not declared in the package.json file.
+
+Please note that, if a subfolder has a package.json file, it is considered another project and should be checked with another depcheck command.
+Remember to always verify and test your application after removing unused dependencies to ensure that everything works as expected.
+
+---
+
+### ACL - Access Control List : role-based access control
+
+ACL stands for Access Control List, which is a mechanism used to manage permissions and access to resources in a system. In Node.js, ACL can be implemented using various libraries and frameworks, such as:
+ 
+1. acl (npm package): A popular library for managing ACL in Node.js applications.
+2. access-control (npm package): Another library for implementing ACL in Node.js.
+3. Node-ACL (npm package): A simple ACL library for Node.js.
+4. CASL (npm package): A more advanced library for managing permissions and ACL in Node.js applications.
+ 
+These libraries provide features like role-based access control, permission management, and more.
+
+To implement API-specific permissions, you can modify the `allows` property to include specific API endpoints and HTTP methods. Here's an updated example:
+
+In below example:
+- We define three roles: `admin`, `moderator`, and `user`.
+- The `admin` role has full access to both `/api/users` and `/api/posts`.
+- The `moderator` role can `GET`, `POST`, and `PUT` on `/api/posts`, but not `DELETE`.
+- The `user` role can only `GET` and `POST` on `/api/posts`.
+- We specify the permissions for each role using the `allows` property.
+- We then check if a specific role has permission to perform an action on a resource using the `isAllowed` method.
+- By separating the permission-checking logic into its own middleware function (`checkPermissions`), you can easily reuse it across multiple routes or even in other parts of your application.
+
+```
+const express = require('express');
+const acl = require('acl');
+ 
+const app = express();
+ 
+// Initialize ACL
+const aclInstance = new acl(new acl.memoryBackend());
+ 
+// Define roles and permissions
+aclInstance.allow([
+  {
+    roles: 'admin',
+    allows: [
+      { resources: '/api/users', permissions: ['GET', 'POST', 'PUT', 'DELETE'] },
+      { resources: '/api/posts', permissions: ['GET', 'POST', 'PUT', 'DELETE'] }
+    ]
+  },
+  {
+    roles: 'moderator',
+    allows: [
+      { resources: '/api/posts', permissions: ['GET', 'POST', 'PUT'] }
+    ]
+  },
+  {
+    roles: 'user',
+    allows: [
+      { resources: '/api/posts', permissions: ['GET', 'POST'] }
+    ]
+  }
+]);
+ 
+// Separate middleware function to check permissions
+
+const checkPermissions = (req, res, next) => {
+  const role = req.user.role; // Assuming you have a way to get the user's role
+  const resource = req.path;
+  const method = req.method;
+ 
+  aclInstance.isAllowed(role, resource, method, (err, allowed) => {
+    if (err) {
+      return res.status(500).send({ message: 'Internal Server Error' });
+    }
+ 
+    if (!allowed) {
+      return res.status(403).send({ message: 'Access denied' });
+    }
+ 
+    next();
+  });
+};
+ 
+    // Use the middleware function in the app
+app.use(checkPermissions);
+ 
+   // API routes
+app.post('/api/posts', (req, res) => {
+  // Handle POST request
+});
+ 
+app.listen(3000, () => {
+  console.log('Server listening on port 3000');
+});
+```
