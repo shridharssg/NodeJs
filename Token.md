@@ -123,9 +123,7 @@ In this scenario, a new access token is created every 15 minutes, as long as the
 
 ```
 const express = require('express');
-
 const jwt = require('jsonwebtoken');
-
 const app = express();
 
 // Middleware to check for access token
@@ -133,23 +131,17 @@ const app = express();
 const checkAccessToken = (req, res, next) => {
 
   const accessToken = req.headers['x-access-token'];
-
   if (!accessToken){
        return res.status(401).send('Access token is required');
   }
 
   jwt.verify(accessToken, process.env.SECRET_KEY, (err, decoded) => {
-
     if (err){
       return res.status(401).send('Invalid access token');
     }
-
     req.user = decoded;
-
     next();
-
   });
-
 };
 
 
@@ -159,35 +151,32 @@ const refreshAccessToken = (req, res, next) => {
 
   const refreshToken = req.headers['x-refresh-token'];
 
-  if (!refreshToken) return res.status(401).send('Refresh token is required');
-
+  if (!refreshToken) {
+      return res.status(401).send('Refresh token is required');
+  }
 
   jwt.verify(refreshToken, process.env.SECRET_KEY, (err, decoded) => {
 
-    if (err) return res.status(401).send('Invalid refresh token');
+    if (err) {
+      return res.status(401).send('Invalid refresh token');
+    }
 
     const newAccessToken = jwt.sign({ userId: decoded.userId }, process.env.SECRET_KEY, { expiresIn: '15m' });
 
     res.set('x-access-token', newAccessToken);
-
     next();
-
   });
-
 };
 
 // Apply middleware
 
 app.use(checkAccessToken);  
-
 app.use(refreshAccessToken);
 
 // Example route
 
 app.get('/protected', (req, res) => {
-
   res.send(`Hello, ${req.user.userId}!`);
-
 });
 
 app.listen(3000, () => {
@@ -199,11 +188,8 @@ app.listen(3000, () => {
 In this example:
 
 - `checkAccessToken` middleware checks for the presence and validity of the access token.
-
 - `refreshAccessToken` middleware checks for the presence and validity of the refresh token and generates a new access token if valid.
-
 - Both middleware functions are applied to all routes using `app.use()`.
-
 - The example route `/protected` is only accessible with a valid access token.
 
 Note: This is a simplified example and you should consider additional security measures like token blacklisting, secure key storage, and refresh token rotation.
