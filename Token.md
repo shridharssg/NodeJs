@@ -2,7 +2,11 @@ Q. Token-based authentication and session-based authentication
 
 Q. JWT
 
+Q. JWT Manipulation
+
 Q. Authorization in Nest JS
+
+Q. Token storage in frontend
 
 ---
 
@@ -429,4 +433,26 @@ In this example, the `AuthGuard` is applied globally to all routes in the `AppMo
 1. *Implement Authentication*
 
 Implement authentication using a library like Passport.js or a custom solution. Once authenticated, attach the user object to the request using a middleware or a guard.
+
+---
+
+### Token storage in frontend
+
+On the frontend side, tokens are typically stored in one of the following places:
+ 
+1. *Local Storage*: A web storage mechanism that allows you to store data locally within the user's browser. Tokens can be stored in local storage using JavaScript.
+2. *Session Storage*: Similar to local storage, but data is only stored for the duration of the session.
+3. *Cookies*: Tokens can be stored in cookies, but this is less secure than local or session storage.
+4. *Memory*: Some applications store tokens in memory, such as in a JavaScript variable, but this is less secure and not recommended.
+5. *Secure Storage*: Some browsers provide a secure storage mechanism, like the Web Cryptography API, to store sensitive data like tokens.
+ 
+When storing tokens on the frontend, consider the following:
+ 
+- Use secure storage mechanisms like local storage or session storage.
+- Use HTTPS to encrypt data in transit.
+- Implement token expiration and renewal mechanisms.
+- Handle token storage and retrieval securely in your application.
+- Avoid storing sensitive data like tokens in cookies or memory.
+ 
+Remember to always follow best practices for token storage and handling to ensure the security of your application.
 
