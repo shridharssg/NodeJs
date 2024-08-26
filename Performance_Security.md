@@ -1,3 +1,12 @@
+Q. prevent Node.js from continuously hitting or How to increase application performance
+Q. Rate limiting
+Q. Debounce and Throttling
+Q. Remove unused libraries or modules in a Node.js application
+Q. ACL - Access Control List -  role-based access control
+
+---
+---
+
 ### To prevent Node.js from continuously hitting an API or malacious attack, you can implement the following strategies:
 ### Or How to increase application performance
 
