@@ -10,6 +10,10 @@ Q. ACL - Access Control List -  role-based access control
 
 Q. how to encrypt user requests and server responses in Node.js using AES encryption:
 
+Q. Hashing vs Encryption
+
+Q. Salting
+
 Q. Handle failed request i: API is down, but the client is still making requests to it
 
 Q. Axios vs fetch vs httpClient
