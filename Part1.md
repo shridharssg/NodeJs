@@ -7,7 +7,6 @@ Q. [Async Await](#asyncAwait)
 Q. [Event Emitter and Events](#eventIndex)
 
 Q. [File System](#fsIndex)
-Q. [Clutser](#cluster)
 
 ---
 ## <a id="promisesIndex"> Promises </a>
