@@ -10,6 +10,8 @@ Q. ACL - Access Control List -  role-based access control
 
 Q. Handle failed request i: API is down, but the client is still making requests to it
 
+Q. Axios
+
 ---
 ---
 
@@ -438,3 +440,92 @@ By using a retry mechanism, we can make our application more resilient to tempor
 
 ---
 
+### Axios
+
+Axios is a popular choice for making HTTP requests in Node.js because of its:
+ 
+1. *Simple and intuitive API*: Axios has a straightforward API that makes it easy to send HTTP requests and interact with web servers.
+ 
+2. *Promise-based*: Axios uses Promises, which makes it easy to handle asynchronous requests and errors.
+ 
+3. *Support for async/await*: Axios works seamlessly with async/await syntax, making it easy to write asynchronous code that's easy to read and maintain.
+ 
+4. *Interceptors*: Axios allows you to intercept requests and responses, making it easy to add custom logic, headers, or error handling.
+ 
+5. *Cancel requests*: Axios allows you to cancel ongoing requests, which is useful for handling timeouts or user-initiated cancellations.
+ 
+6. *JSON data handling*: Axios automatically converts JSON data to JavaScript objects, making it easy to work with JSON APIs.
+ 
+7. *Error handling*: Axios provides detailed error messages and codes, making it easy to handle and debug errors.
+ 
+8. *Lightweight*: Axios is a lightweight library, making it suitable for use in serverless environments or applications with limited resources.
+ 
+Overall, Axios provides a convenient, flexible, and powerful way to make HTTP requests in Node.js, making it a popular choice among developers.
+
+Here's an example of using Axios to make a GET request to a JSON API:
+ 
+```
+const axios = require('axios');
+ 
+async function fetchUserData() {
+  try {
+    const response = await axios.get('(link unavailable)');
+    console.log(response.data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+ 
+fetchUserData();
+```
+ 
+In this example:
+ 
+- We import Axios and create an async function `fetchUserData`.
+- Inside the function, we use `axios.get` to make a GET request to the specified URL.
+- We await the response and log the data to the console.
+- If an error occurs, we catch it and log the error to the console.
+ 
+Axios takes care of:
+ 
+- Making the HTTP request
+- Handling the response data (in this case, JSON)
+- Providing error handling
+ 
+This is a simple example, but Axios can handle more complex scenarios, such as:
+ 
+- Posting data to an API
+- Handling authentication and headers
+- Canceling requests
+- Intercepting requests and responses
+ 
+**Axios can be used in both Angular and Node.js.**
+ 
+*In Angular:*
+ 
+Axios is used as a client-side HTTP client to make requests to servers. It's often used to:
+ 
+- Fetch data from APIs
+- Send data to servers
+- Handle authentication and authorization
+ 
+In Angular, Axios is typically used in services or components to make HTTP requests.
+ 
+*In Node.js:*
+ 
+Axios is used as a server-side HTTP client to make requests to other servers or APIs. It's often used to:
+ 
+- Make requests to external APIs
+- Handle server-side authentication and authorization
+- Fetch data from other services
+ 
+In Node.js, Axios is typically used in server-side code, such as in Express.js routes or middleware.
+ 
+*Key differences:*
+ 
+- In Angular, Axios is used in the browser, whereas in Node.js, it's used in the server environment.
+- In Angular, Axios is often used to handle client-side errors, whereas in Node.js, it's used to handle server-side errors.
+ 
+In summary, Axios can be used in both Angular and Node.js to make HTTP requests, but the context and usage differ between the two environments
+
+---
