@@ -2,6 +2,8 @@ Q. Token-based authentication and session-based authentication
 
 Q. JWT
 
+Q. Authorization in Nest JS
+
 ---
 
 ### Token-based authentication and session-based authentication
@@ -237,3 +239,97 @@ In this example:
 - The example route `/protected` is only accessible with a valid access token.
 
 Note: This is a simplified example and you should consider additional security measures like token blacklisting, secure key storage, and refresh token rotation.
+
+---
+
+### authorization in NestJS
+
+In NestJS, authorization can be implemented using Guards, which are similar to middleware functions but provide more flexibility and power. Here's an example of how to implement authorization in NestJS:
+
+1. *Create an Auth Guard*
+
+Create a new file `auth.guard.ts`:
+
+```
+import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
+import { Reflector } from '@nestjs/core';
+
+@Injectable()
+export class AuthGuard implements CanActivate {
+  constructor(private reflector: Reflector) {}
+
+  async canActivate(context: ExecutionContext): Promise<boolean> {
+    const request = context.switchToHttp().getRequest();
+    const roles = this.reflector.get<string[]>('roles', context.getHandler());
+
+    if (!roles) {
+      return true;
+    }
+
+    const user = request.user;
+
+    if (!user || !user.roles) {
+      return false;
+    }
+    return roles.some(role => user.roles.includes(role));
+  }
+}
+
+```
+
+This guard checks if the user has the required roles to access a route.
+
+1. *Add Roles to Routes*
+   
+Add the `@Roles` decorator to your routes to specify the required roles:
+```
+
+import { Controller, Get, Post, Roles } from '@nestjs/common';
+
+@Controller('users')
+export class UsersController {
+
+  @Get()
+  @Roles('admin')
+  async getAllUsers() {
+    // ...
+  }
+  
+  @Post()
+  @Roles('user', 'admin')
+  async createUser() {
+    // ...
+  }
+}
+
+```
+
+In this example, the `getAllUsers` route requires the `admin` role, while the `createUser` route requires either the `user` or `admin` role.
+
+1. *Apply the Auth Guard*
+
+Apply the `AuthGuard` to your routes using the `@UseGuards` decorator:
+
+```
+import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';\
+import { UsersModule } from './users/users.module';
+import { AuthGuard } from './auth.guard';
+
+@Module({
+  imports: [UsersModule],
+  controllers: [AppController],
+  providers: [AppService, AuthGuard],
+})
+
+export class AppModule {}
+
+```
+
+In this example, the `AuthGuard` is applied globally to all routes in the `AppModule`.
+
+1. *Implement Authentication*
+
+Implement authentication using a library like Passport.js or a custom solution. Once authenticated, attach the user object to the request using a middleware or a guard.
+
