@@ -23,48 +23,6 @@ Q. Axios vs fetch vs httpClient
 ---
 ---
 
-### Token-based authentication and session-based authentication
-
-Token-based authentication and session-based authentication are two different approaches to managing user authentication. Here's a comparison:
- 
-*Token-Based Authentication*
- 
-1. _Stateless_: Server doesn't store user session information.
-2. _Tokens_: Client receives a token (e.g., JWT) after authentication.
-3. _Token verification_: Server verifies token on each request.
-4. _No session storage_: No server-side session storage required.
-5. _Scalability_: Better scalability since no session storage needed.
-6. _Security_: Tokens can be signed and encrypted for added security.
- 
-*Session-Based Authentication*
- 
-1. _Stateful_: Server stores user session information.
-2. _Session ID_: Client receives a session ID after authentication.
-3. _Session storage_: Server stores session data (e.g., user ID, permissions).
-4. _Session verification_: Server verifies session ID on each request.
-5. _Server-side storage_: Requires server-side session storage.
-6. _Security_: Sessions can be vulnerable to attacks (e.g., session fixation).
- 
-Key differences:
- 
-- Token-based authentication is stateless, while session-based authentication is stateful.
-- Token-based authentication uses tokens for verification, while session-based authentication uses session IDs.
-- Token-based authentication is more scalable and secure, while session-based authentication can be more vulnerable to attacks.
- 
-When to use each:
- 
-- Token-based authentication:
-    - API authentication
-    - Mobile app authentication
-    - Single-page applications (SPAs)
-- Session-based authentication:
-    - Traditional web applications
-    - Applications requiring server-side session management
- 
-Remember, token-based authentication is generally more modern and secure, but session-based authentication can still be suitable for certain use cases.
-
----
-
 ### To prevent Node.js from continuously hitting an API or malacious attack, you can implement the following strategies:
 ### Or How to increase application performance
 
