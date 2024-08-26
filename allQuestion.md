@@ -1223,7 +1223,7 @@ Uncollected DOM Elements: In web development, if DOM elements are not properly r
 
 Event Emitters: If event emitters are not properly cleaned up after use, they can create memory leaks. Subscribing to events without unsubscribing from them can keep objects alive longer than necessary.
 
-```
+---
 
 ### 43. How you can achieve caching in node application?
 Caching is beneficial for various types of data in a Node.js application, especially when dealing with data that is frequently accessed and relatively static.
@@ -1281,8 +1281,6 @@ app.listen(3000, () => {
 In this example, when a request is made to fetch user data, the application first checks if the data is present in the Redis cache. If it is, the cached data is returned. If not, the data is fetched from the database, stored in the cache using client.setex(), and then returned to the client.
 
 ---
-
-
 
 ### How you can improve the performance of the node applications?
 
