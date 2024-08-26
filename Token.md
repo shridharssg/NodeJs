@@ -241,6 +241,103 @@ In this example:
 Note: This is a simplified example and you should consider additional security measures like token blacklisting, secure key storage, and refresh token rotation.
 
 ---
+### JWT access tokens can be manipulated?
+
+Yes, JWT access tokens can be manipulated, but it's important to note that JWTs are designed to be secure and tamper-proof. However, like any security mechanism, they are not foolproof.
+ 
+Here are some ways JWT access tokens can be manipulated:
+ 
+1. *Token tampering*: An attacker could try to modify the token's payload or signature. However, JWTs use digital signatures to prevent tampering. If a token is modified, the signature will be invalid, and the token will be rejected.
+2. *Token forging*: An attacker could try to create a fake token with a valid signature. However, JWTs use a secret key to sign tokens, making it difficult for attackers to forge a valid token without the key.
+3. *Token replay attacks*: An attacker could intercept a valid token and reuse it. To prevent this, JWTs can include a unique identifier (jti) and a limited lifetime (exp).
+ 
+To minimize the risk of JWT manipulation:
+ 
+1. *Use a secure secret key*: Keep your secret key safe and secure.
+2. *Use a suitable algorithm*: Use a strong algorithm like HS256 or RS256.
+3. *Validate tokens*: Always validate tokens on each request.
+4. *Use token blacklisting*: Revoke and blacklist tokens when necessary.
+5. *Use secure transmission*: Use HTTPS to transmit tokens securely.
+
+---
+
+### A token replay attack - 
+
+A token replay attack occurs when an attacker intercepts a valid token and reuses it to gain unauthorized access to a system or resource. Here's an example:
+
+***Scenario:***
+1. Alice logs in to a web application and receives a valid JWT token:
+
+```
+{
+  "sub": "Alice",
+  "exp": 1643723400,
+  "iat": 1643722800
+}
+
+```
+
+1. The token is sent with each request to authenticate Alice.
+2. An attacker, Bob, intercepts the token using a network sniffer or other means.
+3. Bob reuses the token to send requests to the application, pretending to be Alice.
+
+***Example:***
+
+Suppose the application has an endpoint `/transfer-money` that requires authentication. Bob intercepts Alice's token and sends a request:
+
+```
+POST /transfer-money HTTP/1.1
+Host: (link unavailable)
+Authorization: Bearer <intercepted_token>
+
+```
+The application verifies the token and grants access, allowing Bob to transfer money as Alice.
+
+***Consequences:***
+Token replay attacks can lead to:
+
+- Unauthorized access to sensitive data or actions
+- Impersonation of legitimate users
+- Security breaches
+
+***Prevention:***
+To prevent token replay attacks:
+
+1. *Use HTTPS*: Encrypt tokens in transit to prevent interception.
+2. *Token blacklisting*: Revoke and blacklist tokens when users log out or tokens expire.
+3. *Token binding*: Bind tokens to specific devices or IP addresses.
+4. *Short token lifetimes*: Use short token lifetimes to limit the window for replay attacks.
+5. *Token validation*: Verify tokens on each request, checking for tampering, expiration, and blacklisting.
+
+By implementing these measures, you can reduce the risk of token replay attacks and protect your application's security.
+
+---
+
+HTTPS (Hypertext Transfer Protocol Secure) encrypts tokens in transit using Transport Layer Security (TLS) or Secure Sockets Layer (SSL) encryption. Here's a simplified overview of the process:
+
+1. _Client-Server Handshake_: When a client (e.g., web browser) connects to a server, they perform a TLS/SSL handshake to establish a secure connection.
+
+2. _Certificate Verification_: The client verifies the server's identity by checking its digital certificate, which includes the server's public key.
+3. _Symmetric Key Exchange_: The client and server negotiate a shared symmetric key, used for encrypting and decrypting data.
+4. _Token Encryption_: When sending tokens, the client encrypts them using the shared symmetric key.
+5. _Encrypted Token Transmission_: The encrypted token is transmitted over the secure connection.
+6. _Server-Side Decryption_: The server decrypts the token using the shared symmetric key.
+
+TLS/SSL encryption ensures that:
+
+- Tokens are encrypted in transit, protecting against interception.
+- Tokens are authenticated, ensuring they come from the expected client.
+- Tokens are tamper-proof, preventing modification during transmission.
+
+In more detail, HTTPS uses a combination of:
+
+- *Symmetric encryption* (e.g., AES) for efficient encryption and decryption.
+- *Asymmetric encryption* (e.g., RSA) for secure key exchange and authentication.
+- *Digital certificates* to verify identities and establish trust.
+
+By using HTTPS, you can ensure that tokens are encrypted and protected during transmission, reducing the risk of token interception and replay attacks.
+
+---
 
 ### authorization in NestJS
 
