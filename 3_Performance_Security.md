@@ -1,5 +1,3 @@
-Q. Token-based authentication and session-based authentication
-
 Q. prevent Node.js from continuously hitting or How to increase application performance
 
 Q. Rate limiting
