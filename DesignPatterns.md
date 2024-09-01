@@ -3,7 +3,16 @@ What are design patterns?
   - Applying design patterns tailored to Node.js can lead to more efficient and optimized applications
   - developers can create more robust, maintainable, and extensible codebases.
 
-Singletons
+1. Singleton Pattern
+2. Observers
+3. Factories
+4. Dependency Injection
+5. 
+
+---
+
+### Singleton Pattern
+
   The singleton patterns restrict the number of instantiations of a “class” to one. Creating singletons in Node.js is pretty straightforward, as require is there to help you.
   It does not matter how many times you will require this module in your application; it will only exist as a single instance.
   
