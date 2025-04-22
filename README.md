@@ -1,0 +1,354 @@
+### 1. Difference between req.params and req.query?
+    
+In the context of a Node.js server using the Express framework, req.params and req.query are used to access different types of parameters passed in the URL.
+
+req.params is an object containing properties mapped to the named route parameters. These parameters are part of the URL path and are matched by the route’s path pattern. They are typically used to capture dynamic values from the URL.
+
+```
+// Route definition
+app.get('/users/:id', (req, res) => {
+    const userId = req.params.id; // Access the "id" parameter from the URL
+    // Use userId to retrieve user data
+});
+```
+
+req.query is an object containing a property for each query string parameter in the route. Query parameters are appended to the URL after a ? and are used to pass additional information or filters for the requested resource.
+
+If you have a route defined as /search, and a client makes a request like /search?city=NewYork&active=true, you can access the query parameters city and active using req.query.city and req.query.active respectively.
+
+```
+  // Route definition
+  app.get('/search', (req, res) => {
+      const city = req.query.city; // Access the "city" query parameter
+      const active = req.query.active; // Access the "active" query parameter
+      // Use city and active for searching
+  });
+  ```
+
+### 2. How to resolve unhandled exceptions in node?
+In Node.js, unhandled exceptions can be resolved using the process.on(‘uncaughtException’) event. By attaching a listener to this event, you can catch unhandled exceptions and prevent Node.js from terminating.
+
+```
+process.on('uncaughtException', (err) => {
+  console.error('An unhandled exception occurred:', err);
+  // Perform cleanup, logging, or any necessary action
+  // Avoid attempting to continue with the application as it may be in an inconsistent state
+  // Gracefully shut down the application
+  process.exit(1); // Exit the process with a failure code (1)
+});
+
+// Example of an unhandled exception (for demonstration purposes)
+// This code will throw an unhandled exception
+setTimeout(() => {
+  throw new Error('Intentional unhandled exception');
+}, 100);
+
+// Other application logic
+// ...
+
+```
+When an unhandled exception occurs, the provided callback function is executed, allowing you to log the error, perform any necessary cleanup, and gracefully shut down the application using process.exit(1).
+
+---
+
+Difference between readFile and createReadStream?
+The readFile method is used to asynchronously read the entire contents of a file into memory as a single buffer. It is suitable for small to medium-sized files that can be comfortably held in memory. Once the entire file is read, the file content is available for processing.
+
+```
+   const fs = require('fs');
+
+   fs.readFile('example.txt', 'utf8', (err, data) => {
+     if (err) {
+       // Handle error
+     } else {
+       // Process the file data
+     }
+   });
+   ```
+The createReadStream method is used to create a readable stream from a file. This method is suitable for reading large files or for efficiently processing the contents of a file chunk by chunk, without loading the entire file into memory at once. This is particularly useful when dealing with large files, as it helps in optimizing memory usage.
+
+---
+
+### Difference between Hashing and Encryption?
+Hashing is a one-way process used for data integrity and verification. It converts input data into a fixed-size string of characters, typically a hexadecimal number. The resulting string, known as a hash value or digest, is unique to the input data.
+
+Hashing is indeed idempotent, meaning that for the same input, the resulting hash value will always be the same. This property is desirable for ensuring data integrity and security.
+
+Example of hashing:
+
+When the user sets or changes their password, you would hash their input using bcrypt and then store the resulting hash in your database. When doing this, bcrypt handles the addition of a salt to the password and the hashing process.
+
+```
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+const plainTextPassword = 'mySecurePassword';
+
+bcrypt.hash(plainTextPassword, saltRounds, (err, hash) => {
+  if (!err) {
+    console.log('Hashed Password:', hash);
+  }
+});
+```
+
+When the user attempts to log in, you would retrieve the stored hash from the database and then use bcrypt’s compare function to hash the password input by the user and compare the resulting hash with the stored hash. If they match, the input password is correct.
+
+```
+const bcrypt = require('bcrypt');
+const hashedPassword = '...'; // Replace with the actual hashed password
+const userInputPassword = 'userInputPassword'; // Replace with the user's input
+
+// Use the bcrypt compare function to check if the userInputPassword matches the hashed password
+bcrypt.compare(userInputPassword, hashedPassword, (err, result) => {
+  if (err) {
+    // Handle error
+  }
+  if (result) {
+    // Passwords match
+    console.log('Password is correct');
+  } else {
+    // Passwords don't match
+    console.log('Password is incorrect');
+  }
+});
+```
+Encryption is a two-way process that transforms plaintext (original data) into ciphertext (encrypted data) using an encryption algorithm and an encryption key. The encrypted data can later be transformed back into its original form using a decryption algorithm and the corresponding decryption key. Encryption is designed to protect data confidentiality and ensure that only authorized parties can access the original data.
+
+---
+
+### 36. Difference between Async.Await and Async.Series and Async.parallel?
+Async/await is a modern JavaScript feature that allows you to write asynchronous code in a more synchronous style, making it easier to work with promises and asynchronous operations. With async/await, you can define an async function, and within that function, you can use the await keyword to pause the execution of the function until a promise is resolved. This allows you to write asynchronous code that looks and behaves more like synchronous code, making it easier to manage and reason about.
+
+```
+   async function fetchData() {
+     try {
+       let result = await fetch('https://api.example.com/data');
+       let data = await result.json();
+       console.log(data);
+     } catch (error) {
+       console.error('Error fetching data:', error);
+     }
+   }
+```
+   
+**Async.series** is a method provided by the Async.js library, which is a utility module for working with asynchronous JavaScript. Async.series is used to run multiple asynchronous functions in a specific order, one after the other. Each function is executed only after the previous function has completed. This is typically used when you have several asynchronous tasks that need to be executed in a specific sequence.
+```
+   async.series([
+     function(callback) {
+       // Perform asynchronous operation 1
+       callback(null, 'Result 1');
+     },
+     function(callback) {
+       // Perform asynchronous operation 2
+       callback(null, 'Result 2');
+     }
+   ], function(err, results) {
+     // All tasks have been completed
+     console.log(results);
+   });
+```
+   
+**Async.parallel** is a function from the Async.js library in JavaScript. It is used to run multiple asynchronous functions simultaneously and collect the results when all of them have completed.
+
+```
+async.parallel([
+  function(callback) {
+    // Perform asynchronous operation 1
+    callback(null, 'Result 1');
+  },
+  function(callback) {
+    // Perform asynchronous operation 2
+    callback(null, 'Result 2');
+  }
+], function(err, results) {
+  // All tasks have been completed
+  console.log(results);
+});
+```
+---
+
+### How you can improve the performance of the node applications?
+
+**Use Streams**: Utilize Node.js streams for data processing, especially when dealing with large volumes of data. Streams enable data to be processed in chunks, reducing memory usage and improving performance.
+```
+   const fs = require('fs');
+   const readableStream = fs.createReadStream('input.txt');
+   const writableStream = fs.createWriteStream('output.txt');
+
+   readableStream.pipe(writableStream);
+  ```
+
+**Implement Caching**: Cache frequently accessed data using in-memory solutions like Redis to reduce the need for repeated database queries and enhance overall application responsiveness.
+
+```
+   const redis = require('redis');
+   const client = redis.createClient();
+
+   // Caching data
+   const fetchUserData = (userId) => {
+     // Simulated data fetch from database
+     const userData = { id: userId, name: 'John Doe' };
+     // Store data in cache with expiration
+     client.setex(`user:${userId}`, 3600, JSON.stringify(userData));
+     return userData;
+   };
+
+   // Retrieving data from cache
+   const getUserData = (userId, callback) => {
+     client.get(`user:${userId}`, (err, userData) => {
+       if (err) throw err;
+       if (userData) {
+         return callback(JSON.parse(userData));
+       }
+       const userData = fetchUserData(userId);
+       return callback(userData);
+     });
+   };
+  ```
+
+
+**Utilize Worker Threads:** For CPU-intensive tasks, consider using Node.js worker threads to offload processing to separate threads and take advantage of multi-core CPUs without blocking the main event loop.
+
+```
+   const { Worker, isMainThread, parentPort } = require('worker_threads');
+
+   if (isMainThread) {
+     // Main thread
+     const worker = new Worker(__filename);
+     worker.on('message', (msg) => {
+       console.log('Worker said:', msg);
+     });
+   } else {
+     // Worker thread
+     parentPort.postMessage('Hello from the worker!');
+   }
+  ```
+
+**Compression:** Enable compression for HTTP responses using middleware like compression in a Node.js web framework such as Express.
+
+```
+     const express = require('express');
+     const compression = require('compression');
+     const app = express();
+
+     app.use(compression()); // Enable compression for all routes
+
+     // ... Define your routes and application logic
+
+```
+    
+**Scaling**
+
+Utilize horizontal scaling by employing load balancers (such as Nginx or HAProxy) to distribute incoming requests across multiple Node.js instances.
+Implement clustering in Node.js using the built-in cluster module to take advantage of multi-core systems and create child processes to handle incoming requests.
+Use container orchestration tools like Docker Swarm or Kubernetes to manage and scale Node.js application instances across a cluster of machines.
+
+```
+   const cluster = require('cluster');
+   const os = require('os');
+
+   if (cluster.isMaster) {
+       const numCPUs = os.cpus().length;
+
+       for (let i = 0; i < numCPUs; i++) {
+           cluster.fork();
+       }
+
+       cluster.on('exit', (worker, code, signal) => {
+           console.log(`Worker ${worker.process.pid} died`);
+       });
+   } else {
+       // Code for the worker process
+       const app = require('./app');
+       app.listen(3000);
+   }
+```
+
+**Optimized Database Queries:** Construct efficient database queries, utilize database indexing, and employ query optimization techniques to minimize database load and response times.
+
+```
+   // Efficient query with proper indexing
+   const users = await User.find({}).limit(10).sort({ createdAt: -1 });
+
+   // Index creation
+   db.collection('users').createIndex({ name: 1 });
+Error Handling: Implement effective error handling mechanisms to prevent crashes and ensure the application continues to run smoothly in case of errors.
+
+   // Implementing centralized error handling middleware in an Express.js application
+   app.use((err, req, res, next) => {
+     console.error(err.stack);
+     res.status(500).send('Something went wrong!');
+   });
+
+   // Handling unhandled promise rejections
+   process.on('unhandledRejection', (err) => {
+     console.error('Unhandled Rejection:', err);
+     // Logging and other cleanup tasks
+     process.exit(1); // Exit the process in case of unhandled rejections
+   });
+```
+
+**Avoid Synchronous Operations:**  Minimize the use of synchronous operations, especially in I/O-bound tasks, and prioritize asynchronous operations to prevent blocking the event loop and maximize concurrency.
+
+```
+Use Promise.all to execute multiple asynchronous operations concurrently and await their results.
+     function fetchUserData(userId) {
+       // Simulated data fetch from a database or API
+       return new Promise((resolve, reject) => {
+         setTimeout(() => {
+           resolve(`User data for user ${userId}`);
+         }, 1000);
+       });
+     }
+
+     const userIds = [1, 2, 3];
+
+     Promise.all(userIds.map((id) => fetchUserData(id)))
+       .then((userData) => {
+         console.log(userData);
+       })
+       .catch((error) => {
+         console.error(error);
+       });
+       
+Use Promises or the async/await syntax to handle asynchronous operations in a more readable and maintainable manner.
+     function fetchData() {
+       return new Promise((resolve, reject) => {
+         // Simulated asynchronous data fetching
+         setTimeout(() => {
+           resolve('Data fetched');
+         }, 1000);
+       });
+     }
+
+     fetchData()
+       .then((data) => {
+         console.log(data);
+       })
+       .catch((error) => {
+         console.error(error);
+       });
+```
+
+**Content Delivery Networks (CDNs):**
+
+Offload static content delivery to a CDN to reduce the load on the application servers and improve content delivery performance.
+
+---
+
+
+### 42. What are the different types of memory leaks?
+In Node.js, memory leaks can occur due to various reasons, and addressing them is vital to maintain the performance and stability of Node.js applications. Some common types of memory leaks in Node.js include:
+
+**Accidental Global Variables**: When a variable is not properly scoped and unintentionally becomes a global variable, it can prevent it and any objects it references from being garbage collected, leading to memory leaks.
+
+**Closures**: Closures can keep references to local variables even after they are no longer needed, preventing the garbage collector from reclaiming their memory.
+
+**Forgotten Timers and Callbacks:** Timers and callbacks that are not cleared when they are no longer needed can hold references to objects, preventing their disposal.
+
+**Unintentional Circular References**: When objects reference each other in a loop, and those references are not properly broken, the garbage collector is unable to reclaim the memory occupied by these objects.
+
+**Uncollected DOM Elements:** In web development, if DOM elements are not properly removed when they are no longer needed, they continue to consume memory.
+
+**Event Emitters:** If event emitters are not properly cleaned up after use, they can create memory leaks. Subscribing to events without unsubscribing from them can keep objects alive longer than necessary.
+
+---
